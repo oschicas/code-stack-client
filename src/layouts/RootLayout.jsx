@@ -5,10 +5,10 @@ import NavBar from '../components/NavBar';
 const RootLayout = () => {
     return (
         <div>
-            <nav className='bg-base-100 shadow-sm'>
+            <nav className='fixed top-0 z-50 w-full backdrop-blur-xs bg-[#0e243e3c]'>
                 <NavBar></NavBar>
             </nav>
-            <div className='min-h-[calc(100vh-65px)] my-8'>
+            <div className='min-h-[calc(100vh-65px)]'>
                 <Outlet></Outlet>
             </div>
         </div>

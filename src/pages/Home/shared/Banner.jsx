@@ -5,7 +5,7 @@ import bannerImg from '../../../assets/banner_image/banner_image.png'
 const Banner = () => {
   return (
     <div
-      className="relative bg-cover bg-center min-h-[70vh] flex items-center justify-center text-white px-4"
+      className="relative bg-cover bg-center min-h-screen flex items-center justify-center text-white px-4"
       style={{
         backgroundImage: `url(${bannerImg})`,
       }}
