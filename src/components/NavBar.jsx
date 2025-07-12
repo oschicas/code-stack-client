@@ -146,8 +146,8 @@ const NavBar = () => {
                 </div>
               </div>
               {toggle && (
-                <div className="bg-[#0B203A] absolute -ml-36 top-0 mt-12 z-50 text-white px-12 py-2 flex flex-col">
-                  <h2>{user?.displayName}</h2>
+                <div className="bg-[#0B203A] absolute -ml-24 top-0 mt-12 z-50 text-white px-5 py-2 flex flex-col">
+                  <h2 className="text-nowrap">User: {user?.displayName}</h2>
                   <Link>Dashboard</Link>
                   <button
                     className="cursor-pointer text-start"
