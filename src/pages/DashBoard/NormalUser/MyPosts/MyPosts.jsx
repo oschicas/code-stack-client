@@ -1,12 +1,11 @@
 import React from 'react';
 
-const MyProfile = () => {
-    
+const MyPosts = () => {
     return (
         <div>
-            My Profile
+            my posts
         </div>
     );
 };
 
-export default MyProfile;
+export default MyPosts;

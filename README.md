@@ -8,4 +8,6 @@ npm packages:
 3. react router
 4. react taostify
 5. react icons
-
+6. react hook form
+7. react spinners
+8. axios

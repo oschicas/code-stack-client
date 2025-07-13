@@ -3,9 +3,11 @@ import { Bounce, toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import { FaGoogle } from "react-icons/fa";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const SocialLogin = () => {
   const { signInWithGoogle } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const location = useLocation();
   const navigate = useNavigate();
   // const axiosInstance = useAxios();
@@ -18,16 +20,19 @@ const SocialLogin = () => {
       .then(async (result) => {
         const currentUser = result.user;
 
-        // update userinfo in database
-        // const userInfo = {
-        //   email: currentUser.email,
-        //   role: "user", //default role
-        //   created_at: new Date().toISOString(),
-        //   last_log_in: new Date().toISOString(),
-        // };
+        // give userinfo in database
+        const userInfo = {
+          name: currentUser.displayName,
+          email: currentUser.email,
+          image: currentUser.photoURL,
+          badge: "bronze",
+          role: "user", //default role
+          created_at: new Date().toISOString(),
+        };
 
-        // const res = await axiosInstance.post("/users", userInfo);
-        // console.log("user update info", res.data);
+        
+        const userRes = await axiosSecure.post('/users', userInfo);
+        console.log(userRes.data);
 
         toast.success(`Logged in ${currentUser.displayName}`, {
           position: "top-right",

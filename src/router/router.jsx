@@ -7,6 +7,9 @@ import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
 import DashBoardLayout from "../layouts/DashBoardLayout";
 import MyProfile from "../pages/DashBoard/MyProfile/MyProfile";
+import AuthPrivate from "../PrivateRoute/AuthPrivate";
+import AddPost from "../pages/DashBoard/NormalUser/AddPost/AddPost";
+import MyPosts from "../pages/DashBoard/NormalUser/MyPosts/MyPosts";
 
 const router = createBrowserRouter([
   {
@@ -37,13 +40,26 @@ const router = createBrowserRouter([
   //   dashboard layout and it's routes
   {
     path: "/dashboard",
-    element: <DashBoardLayout></DashBoardLayout>,
+    element: (
+      <AuthPrivate>
+        <DashBoardLayout></DashBoardLayout>
+      </AuthPrivate>
+    ),
     children: [
-        {
-            index: true,
-            element: <MyProfile></MyProfile>
-        },
-    ]
+      {
+        path: 'my-profile',
+        element: <MyProfile></MyProfile>,
+      },
+      //   normal user routes
+      {
+        path: "add-post",
+        element: <AddPost></AddPost>,
+      },
+      {
+        path: "my-posts",
+        element: <MyPosts></MyPosts>,
+      },
+    ],
   },
 ]);
 

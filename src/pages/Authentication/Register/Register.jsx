@@ -6,17 +6,15 @@ import { Bounce, toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
-// import axios from "axios";
-// import useAxios from "../../../hooks/useAxios";
-// import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Register = () => {
   const { createUser, updateUserProfile, setUser, user } = useAuth();
-  
+
   const [show, setShow] = useState(false);
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState("");
-  //   const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from || "/";
@@ -38,37 +36,33 @@ const Register = () => {
     formData.append("upload_preset", "UserImage");
     formData.append("cloud_name", "dapbx8al2");
 
-    const imageUploadUrl = 'https://api.cloudinary.com/v1_1/dapbx8al2/image/upload'
-    
+    const imageUploadUrl =
+      "https://api.cloudinary.com/v1_1/dapbx8al2/image/upload";
 
     const res = await axios.post(imageUploadUrl, formData);
     console.log("image upload response", res.data.url);
     const imageURL = res.data.url;
 
-    // const imageUploadUrl = `https://api.imgbb.com/1/upload?key=${
-    //   import.meta.env.VITE_Image_Upload_Key
-    // }`;
-
-    // const res = await axios.post(imageUploadUrl, formData);
-
-    // setProfilePic(res.data.data.url);
-    // const imageURL = res.data.data.url;
+    
 
     // create user
     createUser(data.email, data.password)
       .then(async (result) => {
         const currentUser = result.user;
 
-        // update userinfo in database
-        // const userInfo = {
-        //   email: data.email,
-        //   role: "user", //default role
-        //   created_at: new Date().toISOString(),
-        //   last_log_in: new Date().toISOString(),
-        // };
+        // give userinfo in database
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+          image: imageURL,
+          badge: "bronze",
+          role: "user", //default role
+          created_at: new Date().toISOString(),
+        };
 
-        // const userRes = await axiosInstance.post("/users", userInfo);
-        // console.log(userRes.data);
+        
+        const userRes = await axiosSecure.post('/users', userInfo);
+        console.log(userRes.data);
 
         // update user profile in firebase
         updateUserProfile({ displayName: data.name, photoURL: imageURL });
