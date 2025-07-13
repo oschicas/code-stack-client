@@ -57,7 +57,7 @@ const NavBar = () => {
         <NavLink
           to={"/"}
           className={({ isActive }) =>
-            `nav-item ${isActive ? "active font-bold text-[#0D233C]" : ""}`
+            `nav-item ${isActive ? "active font-bold text-white" : ""}`
           }
         >
           Home
@@ -67,7 +67,7 @@ const NavBar = () => {
         <NavLink
           to={"/membership"}
           className={({ isActive }) =>
-            `nav-item ${isActive ? "active font-bold text-[#0D233C]" : ""}`
+            `nav-item ${isActive ? "active font-bold text-white" : ""}`
           }
         >
           Membership
@@ -80,7 +80,7 @@ const NavBar = () => {
           <NavLink
             to={"/dashboard"}
             className={({ isActive }) =>
-              `nav-item ${isActive ? "active font-bold text-[#0D233C]" : ""}`
+              `nav-item ${isActive ? "active font-bold text-white" : ""}`
             }
           >
             DashBoard
@@ -148,9 +148,9 @@ const NavBar = () => {
               {toggle && (
                 <div className="bg-[#0B203A] absolute -ml-24 top-0 mt-12 z-50 text-white px-5 py-2 flex flex-col">
                   <h2 className="text-nowrap">User: {user?.displayName}</h2>
-                  <Link to={'/dashboard'}>Dashboard</Link>
+                  <Link to={'/dashboard'} className="hover:bg-[#0d233d71]">Dashboard</Link>
                   <button
-                    className="cursor-pointer text-start"
+                    className="cursor-pointer text-start hover:bg-[#0d233d71]"
                     onClick={handleLogout}
                   >
                     Logout
