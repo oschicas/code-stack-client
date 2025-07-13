@@ -10,8 +10,6 @@ const SocialLogin = () => {
   const axiosSecure = useAxiosSecure();
   const location = useLocation();
   const navigate = useNavigate();
-  // const axiosInstance = useAxios();
-  // console.log(location);
 
   const from = location?.state?.from || "/";
 

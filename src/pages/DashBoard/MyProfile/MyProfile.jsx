@@ -78,7 +78,7 @@ const MyProfile = () => {
     return <p className="text-center text-red-500">Failed to load profile.</p>;
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
+    <div className="max-w-3xl mx-auto py-4">
       <div className="bg-base-100 shadow-md rounded-lg p-6 flex flex-col md:flex-row items-center gap-6">
         <img
           src={userData?.image || user?.photoURL}
@@ -87,10 +87,13 @@ const MyProfile = () => {
         />
         <div className="text-center md:text-left">
           <h2 className="text-2xl font-bold">
-            {userData?.name || user?.displayName}
+            Name: {userData?.name || user?.displayName}
           </h2>
           <p className="text-sm text-gray-500">
-            {userData?.email || user?.email}
+            Email: {userData?.email || user?.email}
+          </p>
+          <p className="text-sm text-gray-500 font-semibold">
+            Created At: {new Date(userData?.created_at).toLocaleString()}
           </p>
           <div className="mt-2">{renderBadge(userData?.badge)}</div>
         </div>
