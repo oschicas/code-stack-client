@@ -5,6 +5,8 @@ import RootLayout from "../layouts/RootLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
+import DashBoardLayout from "../layouts/DashBoardLayout";
+import MyProfile from "../pages/DashBoard/MyProfile/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +19,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  //   authentication routes (login & register)
+  //   authentication layout and it's routes (login & register)
   {
     path: "/",
     element: <AuthLayout></AuthLayout>,
@@ -31,6 +33,17 @@ const router = createBrowserRouter([
         element: <Register></Register>,
       },
     ],
+  },
+  //   dashboard layout and it's routes
+  {
+    path: "/dashboard",
+    element: <DashBoardLayout></DashBoardLayout>,
+    children: [
+        {
+            index: true,
+            element: <MyProfile></MyProfile>
+        },
+    ]
   },
 ]);
 

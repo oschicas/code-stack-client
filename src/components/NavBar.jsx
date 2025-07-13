@@ -134,7 +134,7 @@ const NavBar = () => {
           <span className="loading loading-spinner loading-xl"></span>
         ) : user ? (
           <>
-            {/* toggle state */}
+            {/* toggle block onclick show and hide */}
             <div className="relative" ref={dropDownRef}>
               <div
                 onClick={() => setToggle(!toggle)}
@@ -148,7 +148,7 @@ const NavBar = () => {
               {toggle && (
                 <div className="bg-[#0B203A] absolute -ml-24 top-0 mt-12 z-50 text-white px-5 py-2 flex flex-col">
                   <h2 className="text-nowrap">User: {user?.displayName}</h2>
-                  <Link>Dashboard</Link>
+                  <Link to={'/dashboard'}>Dashboard</Link>
                   <button
                     className="cursor-pointer text-start"
                     onClick={handleLogout}
