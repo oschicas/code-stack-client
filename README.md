@@ -12,3 +12,4 @@ npm packages:
 7. react spinners
 8. axios
 9. tanstack query
+10. react sweet alert2

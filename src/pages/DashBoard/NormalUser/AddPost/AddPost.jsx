@@ -26,7 +26,11 @@ const AddPost = () => {
   } = useForm();
 
   // fetch post count
-  const { data: postCount, refetch } = useQuery({
+  const {
+    data: postCount,
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["users-post-count", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -92,7 +96,8 @@ const AddPost = () => {
       downVote: 0,
       createdAt: new Date().toISOString(),
     };
-    await updatePost(postData)
+    refetch();
+    await updatePost(postData);
   };
 
   if (postCount >= 5) {
@@ -108,6 +113,14 @@ const AddPost = () => {
         >
           Become a Member
         </button>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center mt-10">
+        <span className="loading loading-spinner text-primary"></span>
       </div>
     );
   }
@@ -160,7 +173,7 @@ const AddPost = () => {
           <select
             {...register("tag", { required: true })}
             className="select focus:outline-0 w-full"
-            defaultValue={'Select Tag'}
+            defaultValue={"Select Tag"}
           >
             <option value="Select Tag" disabled>
               Select Tag
@@ -205,10 +218,12 @@ const AddPost = () => {
         </div>
         {/* buttons (submit, reset) */}
         <div className="space-x-5">
-          <button type="submit" className="btn btn-primary mt-4" disabled={isPending}>
-            {
-                isPending ? 'Submitting Post' : 'Submit Post'
-            }
+          <button
+            type="submit"
+            className="btn btn-primary mt-4"
+            disabled={isPending}
+          >
+            {isPending ? "Submitting Post" : "Submit Post"}
           </button>
           <button
             type="button"
