@@ -31,19 +31,19 @@ const Register = () => {
       return toast.error("Please upload profile pic");
     }
 
+    // make cloudinary image upload file format
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", "UserImage");
     formData.append("cloud_name", "dapbx8al2");
-
+    
+    // cloudinary image upload and response
     const imageUploadUrl =
       "https://api.cloudinary.com/v1_1/dapbx8al2/image/upload";
 
     const res = await axios.post(imageUploadUrl, formData);
     console.log("image upload response", res.data.url);
     const imageURL = res.data.url;
-
-    
 
     // create user
     createUser(data.email, data.password)
@@ -60,8 +60,7 @@ const Register = () => {
           created_at: new Date().toISOString(),
         };
 
-        
-        const userRes = await axiosSecure.post('/users', userInfo);
+        const userRes = await axiosSecure.post("/users", userInfo);
         console.log(userRes.data);
 
         // update user profile in firebase

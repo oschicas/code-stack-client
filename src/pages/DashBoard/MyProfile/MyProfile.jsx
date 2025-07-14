@@ -37,6 +37,7 @@ const MyProfile = () => {
     onSuccess: () => {
       toast.success("About Me updated successfully!");
       refetch();
+      reset();
       queryClient.invalidateQueries({ queryKey: ["user", user.email] });
       setIsEditing(false);
     },
