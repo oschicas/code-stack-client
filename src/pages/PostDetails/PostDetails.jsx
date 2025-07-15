@@ -17,7 +17,11 @@ const PostDetails = () => {
   const queryClient = useQueryClient();
 
   // fetch post details
-  const { data: post = {}, isLoading, refetch } = useQuery({
+  const {
+    data: post = {},
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["post", id],
     queryFn: async () => {
       const res = await axiosInstance(`/posts/${id}`);
@@ -27,28 +31,27 @@ const PostDetails = () => {
 
   //   handle upvote/downvote
   const voteMutation = useMutation({
-    mutationFn: async(voteType) => {
-        const res = await axiosSecure.patch(`/posts/vote/${id}`, {
-            voteType,
-            userEmail: user?.email
-        });
-        return res.data;
+    mutationFn: async (voteType) => {
+      const res = await axiosSecure.patch(`/posts/vote/${id}`, {
+        voteType,
+        userEmail: user?.email,
+      });
+      return res.data;
     },
     onSuccess: () => {
-        refetch();
-        queryClient.invalidateQueries(['post', id]);
-    }
-  })
+      refetch();
+      queryClient.invalidateQueries(["post", id]);
+    },
+  });
 
   // handle vote
   const handleVote = (voteType) => {
     if (!user?.email) {
       return toast.error(`Login required to :${voteType}`);
     }
-    voteMutation.mutate(voteType)
+    voteMutation.mutate(voteType);
   };
 
-  console.log(post);
   if (isLoading) {
     return (
       <div className="flex justify-center mt-10">
@@ -93,11 +96,21 @@ const PostDetails = () => {
           >
             <FaThumbsDown /> {post.downVote || 0}
           </button>
-          <FacebookShareButton url={shareUrl} quote={post.title}>
-            <span className="btn btn-sm btn-outline flex items-center gap-2">
+
+          {user ? (
+            <FacebookShareButton url={shareUrl} quote={post.title}>
+              <span className="btn btn-sm btn-outline flex items-center gap-2">
+                <FaFacebook /> Share
+              </span>
+            </FacebookShareButton>
+          ) : (
+            <button
+              className="btn btn-sm btn-outline flex items-center gap-2"
+              onClick={() => toast.error("Please login to share this post")}
+            >
               <FaFacebook /> Share
-            </span>
-          </FacebookShareButton>
+            </button>
+          )}
         </div>
       </div>
     </div>
