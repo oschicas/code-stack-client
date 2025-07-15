@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaComments, FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+import { useNavigate } from "react-router";
 
 const HomePosts = () => {
   const axiosSecure = useAxiosSecure();
@@ -10,6 +11,7 @@ const HomePosts = () => {
   const [sortByPopularity, setSortByPopularity] = useState(false);
   const postPerPage = 5;
   const topRef = useRef(null);
+  const navigate = useNavigate();
 
   //   fetching post
   const { data, isLoading } = useQuery({
@@ -75,6 +77,7 @@ const HomePosts = () => {
             <div
               key={post?._id}
               className="bg-base-100 p-4 shadow rounded-lg hover:cursor-pointer hover:scale-105 hover:shadow-xl transition-all duration-500"
+              onClick={() => navigate(`/post-details/${post?._id}`)}
             >
               <div className="flex items-center gap-3 mb-2">
                 <img

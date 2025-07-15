@@ -10,6 +10,7 @@ import MyProfile from "../pages/DashBoard/MyProfile/MyProfile";
 import AuthPrivate from "../PrivateRoute/AuthPrivate";
 import AddPost from "../pages/DashBoard/NormalUser/AddPost/AddPost";
 import MyPosts from "../pages/DashBoard/NormalUser/MyPosts/MyPosts";
+import PostDetails from "../pages/PostDetails/PostDetails";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Home></Home>,
       },
+      {
+        path: '/post-details/:id',
+        element: <PostDetails></PostDetails>
+      }
     ],
   },
   //   authentication layout and it's routes (login & register)

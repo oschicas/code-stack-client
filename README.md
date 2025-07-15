@@ -2,6 +2,9 @@ project name:CodeStack
 purpose:
 live URL:
 key features:
+
+
+
 npm packages:
 1. daisyui
 2. tailwind
@@ -13,3 +16,4 @@ npm packages:
 8. axios
 9. tanstack query
 10. react sweet alert2
+11. react share
