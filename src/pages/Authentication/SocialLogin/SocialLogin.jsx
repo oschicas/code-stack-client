@@ -1,17 +1,14 @@
 import React from "react";
 import { Bounce, toast } from "react-toastify";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import { FaGoogle } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const SocialLogin = () => {
+const SocialLogin = ({ from }) => {
   const { signInWithGoogle } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const location = useLocation();
   const navigate = useNavigate();
-
-  const from = location?.state?.from || "/";
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
@@ -28,21 +25,29 @@ const SocialLogin = () => {
           created_at: new Date().toISOString(),
         };
 
-        
-        const userRes = await axiosSecure.post('/users', userInfo);
-        console.log(userRes.data);
+        try {
+          const userRes = await axiosSecure.post("/users", userInfo);
+          console.log(userRes.data);
+        } catch (error) {
+          if(error.message === 'Request failed with status code 409'){
+            navigate(from)
+          }
+        }
 
-        toast.success(`Logged in ${currentUser.displayName}`, {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
+        toast.success(
+          `Successfully Logged in User:${currentUser.displayName}`,
+          {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+          }
+        );
         navigate(from);
       })
       .catch((error) => {

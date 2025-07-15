@@ -11,7 +11,7 @@ const Banner = () => {
       }}
     >
       <div className="max-w-2xl w-full text-center space-y-6">
-        <h1 className="text-3xl md:text-5xl font-bold">Search Your Desired Post</h1>
+        <h1 className="text-3xl md:text-4xl font-bold">Search Your Desired Post By Tag</h1>
         <p className="text-lg md:text-xl">
           Search here to get answers to your questions
         </p>

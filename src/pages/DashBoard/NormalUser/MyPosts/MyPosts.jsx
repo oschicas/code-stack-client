@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { FaComments, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 
 const MyPosts = () => {
   const { user } = useAuth();
@@ -96,7 +97,7 @@ const MyPosts = () => {
                   <td className="font-semibold">{post.title}</td>
                   <td>
                     <span className="badge badge-outline text-green-700 w-40">
-                      {post.upVote || 0} 👍 / {post.downVote || 0} 👎
+                      {post.upVote || 0} <AiOutlineLike size={20} /> / {post.downVote || 0} <AiOutlineDislike size={20} />
                     </span>
                   </td>
                   <td>

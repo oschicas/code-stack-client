@@ -36,7 +36,7 @@ const Register = () => {
     formData.append("file", image);
     formData.append("upload_preset", "UserImage");
     formData.append("cloud_name", "dapbx8al2");
-    
+
     // cloudinary image upload and response
     const imageUploadUrl =
       "https://api.cloudinary.com/v1_1/dapbx8al2/image/upload";
@@ -200,6 +200,9 @@ const Register = () => {
 
           <button type="submit" className="btn btn-primary mt-4">
             Register
+            {
+              
+            }
           </button>
         </fieldset>
         <p>

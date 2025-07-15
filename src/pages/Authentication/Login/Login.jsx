@@ -130,7 +130,7 @@ const Login = () => {
             </Link>
           </p>
         </form>
-        <SocialLogin></SocialLogin>
+        <SocialLogin from={from}></SocialLogin>
       </div>
   );
 };
