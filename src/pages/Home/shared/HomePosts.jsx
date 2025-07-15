@@ -7,15 +7,17 @@ import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 const HomePosts = () => {
   const axiosSecure = useAxiosSecure();
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortByPopularity, setSortByPopularity] = useState(false);
   const postPerPage = 5;
   const topRef = useRef(null);
 
   //   fetching post
   const { data, isLoading } = useQuery({
-    queryKey: ["posts", currentPage],
+    queryKey: ["posts", currentPage, sortByPopularity],
     queryFn: async () => {
+      const route = sortByPopularity ? "popular" : "";
       const res = await axiosSecure.get(
-        `/posts/home?page=${currentPage}&limit=${postPerPage}`
+        `/posts/home/${route}?page=${currentPage}&limit=${postPerPage}`
       );
       return res.data;
     },
@@ -40,6 +42,11 @@ const HomePosts = () => {
     }
   }, [currentPage]);
 
+  const handleToggle = () => {
+    setSortByPopularity((prv) => !prv);
+    setCurrentPage(1);
+  };
+
   //   loading
   if (isLoading) {
     return (
@@ -53,6 +60,9 @@ const HomePosts = () => {
     <div className="max-w-5xl mx-auto p-4 space-y-5" ref={topRef}>
       <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
         <h2 className="text-2xl font-bold">All Posts</h2>
+        <button className="btn btn-sm btn-outline" onClick={handleToggle}>
+          {sortByPopularity ? "Sort by Newest" : "Sort by Popularity"}
+        </button>
       </div>
 
       {/* all posts start */}
