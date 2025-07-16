@@ -53,6 +53,15 @@ const PostDetails = () => {
     voteMutation.mutate(voteType);
   };
 
+  // fetch comment
+  const { data: comments = [] } = useQuery({
+    queryKey: ["comment", id],
+    queryFn: async () => {
+      const res = await axiosInstance.get(`/comments?postId=${id}`);
+      return res.data;
+    },
+  });
+
   //   add comment
   const commentMutation = useMutation({
     mutationFn: async () => {
@@ -71,7 +80,7 @@ const PostDetails = () => {
     onSuccess: () => {
       queryClient.invalidateQueries(["comment", id]);
       toast.success("Comment Added");
-      setCommentText('');
+      setCommentText("");
     },
     onError: (error) => {
       if (error?.response?.data?.message) {
@@ -183,6 +192,29 @@ const PostDetails = () => {
         ) : (
           <p className="text-sm text-gray-500">Login to comment.</p>
         )}
+
+        {/* Comment List */}
+        <div className="space-y-3 mt-2">
+          <p>Comment Lists</p>
+          {comments.length === 0 ? (
+            <p className="text-gray-500">No comments yet.</p>
+          ) : (
+            comments.map((c) => (
+              <div key={c?._id} className="bg-base-200 p-3 rounded-md">
+                <div className="flex items-center gap-2 mb-1">
+                  <img src={c.userImage} className="w-8 h-8 rounded-full" />
+                  <div>
+                    <p className="text-sm font-medium">{c?.user}</p>
+                    <p className="text-xs text-gray-400">
+                      {new Date(c?.createdAt).toLocaleString()}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-sm">{c?.comment}</p>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );
