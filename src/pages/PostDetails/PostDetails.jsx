@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router";
 import useAxios from "../../hooks/useAxios";
 import { FacebookShareButton } from "react-share";
@@ -15,6 +15,7 @@ const PostDetails = () => {
   const shareUrl = `${window.location.origin}/post-details/${id}`;
   const { user } = useAuth();
   const queryClient = useQueryClient();
+  const [commentText, setCommentText] = useState("");
 
   // fetch post details
   const {
@@ -50,6 +51,46 @@ const PostDetails = () => {
       return toast.error(`Login required to :${voteType}`);
     }
     voteMutation.mutate(voteType);
+  };
+
+  //   add comment
+  const commentMutation = useMutation({
+    mutationFn: async () => {
+      const payload = {
+        postId: id,
+        postTitle: post?.title,
+        name: user?.displayName,
+        email: user?.email,
+        userImage: user?.photoURL,
+        comment: commentText,
+        createdAt: new Date().toISOString(),
+      };
+      const res = await axiosSecure.post("/comments", payload);
+      return res.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["comment", id]);
+      toast.success("Comment Added");
+      setCommentText('');
+    },
+    onError: (error) => {
+      if (error?.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Failed to comment");
+      }
+    },
+  });
+
+  //   comment submit
+  const handleCommentSubmit = () => {
+    if (!user) {
+      return toast.error("Log in to submit comment");
+    }
+    if (!commentText.trim()) {
+      return toast.error("Write something to comment");
+    }
+    commentMutation.mutate();
   };
 
   if (isLoading) {
@@ -112,6 +153,36 @@ const PostDetails = () => {
             </button>
           )}
         </div>
+      </div>
+
+      {/* Comments Section */}
+      <div className="bg-base-100 shadow-md p-6 rounded-lg">
+        <h3 className="text-xl font-bold mb-3">Comments</h3>
+
+        {/* Comment input */}
+        {user ? (
+          <div className="flex flex-col gap-2 mb-4">
+            <textarea
+              rows={5}
+              type="text"
+              className="textarea w-full focus:outline-0"
+              placeholder="Write a comment..."
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+            ></textarea>
+            <div className="text-end">
+              <button
+                onClick={handleCommentSubmit}
+                className="btn btn-primary"
+                disabled={commentMutation?.isPending}
+              >
+                Comment
+              </button>
+            </div>
+          </div>
+        ) : (
+          <p className="text-sm text-gray-500">Login to comment.</p>
+        )}
       </div>
     </div>
   );
