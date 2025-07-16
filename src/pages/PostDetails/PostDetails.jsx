@@ -1,9 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useAxios from "../../hooks/useAxios";
 import { FacebookShareButton } from "react-share";
-import { FaFacebook, FaThumbsDown, FaThumbsUp } from "react-icons/fa";
+import { FaArrowLeft, FaFacebook, FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -16,6 +16,7 @@ const PostDetails = () => {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const [commentText, setCommentText] = useState("");
+  const navigate = useNavigate();
 
   // fetch post details
   const {
@@ -112,6 +113,15 @@ const PostDetails = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6 pt-24">
+      {/* Go Back Button */}
+      <div className="mb-4">
+        <button
+          onClick={() => navigate(-1)} // go one step back
+          className="btn btn-sm btn-outline flex items-center gap-2"
+        >
+          <FaArrowLeft /> Go Back
+        </button>
+      </div>
       <div className="bg-base-100 shadow-md p-6 rounded-lg">
         <div className="flex items-center gap-4 mb-4">
           <img
