@@ -11,6 +11,7 @@ import AuthPrivate from "../PrivateRoute/AuthPrivate";
 import AddPost from "../pages/DashBoard/NormalUser/AddPost/AddPost";
 import MyPosts from "../pages/DashBoard/NormalUser/MyPosts/MyPosts";
 import PostDetails from "../pages/PostDetails/PostDetails";
+import MemberShip from "../pages/MemberShip/MemberShip";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: '/post-details/:id',
         element: <PostDetails></PostDetails>
+      },
+      {
+        path: '/membership',
+        element: <AuthPrivate><MemberShip></MemberShip></AuthPrivate>
       }
     ],
   },
