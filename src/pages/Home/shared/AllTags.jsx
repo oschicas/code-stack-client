@@ -20,7 +20,7 @@ const AllTags = ({ setSearchedTag }) => {
       </div>
     );
   }
-  console.log(tags);
+  
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <h2 className="text-2xl font-bold mb-4">Browse by Tags</h2>
@@ -34,6 +34,12 @@ const AllTags = ({ setSearchedTag }) => {
             {tag?.tag}
           </button>
         ))}
+        <button
+          onClick={() => setSearchedTag("")}
+          className="btn btn-sm btn-primary rounded-full"
+        >
+          Reset Tag
+        </button>
       </div>
     </div>
   );
