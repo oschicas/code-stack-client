@@ -48,7 +48,7 @@ const Banner = ({ setSearchedTag }) => {
 
           {/* Popular Keywords */}
           <div className="text-sm mt-2">
-            <span className="font-semibold">Popular:</span>{" "}
+            <span className="font-semibold">Popular Topics:</span>{" "}
             <span className="link link-hover text-gray-200 hover:text-white">
               Code
             </span>
