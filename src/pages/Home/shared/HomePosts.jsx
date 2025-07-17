@@ -1,24 +1,35 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useRef, useState } from "react";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaComments, FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { useNavigate } from "react-router";
+import useAxios from "../../../hooks/useAxios";
 
-const HomePosts = () => {
-  const axiosSecure = useAxiosSecure();
+const HomePosts = ({searchedTag}) => {
+  const axiosInstance = useAxios();
   const [currentPage, setCurrentPage] = useState(1);
   const [sortByPopularity, setSortByPopularity] = useState(false);
   const postPerPage = 5;
   const topRef = useRef(null);
   const navigate = useNavigate();
 
-  //   fetching post
+  useEffect(() => {
+    if(searchedTag){
+      setCurrentPage(1);
+    }
+  }, [searchedTag])
+
+  //   fetching post by normal, popular and by search
   const { data, isLoading } = useQuery({
-    queryKey: ["posts", currentPage, sortByPopularity],
+    queryKey: ["posts", currentPage, sortByPopularity, searchedTag],
     queryFn: async () => {
+      if(searchedTag){
+        const res = await axiosInstance.get(`/posts/search?tag=${searchedTag}`);
+        return {posts: res.data, total: res.data.length}
+      }
+
       const route = sortByPopularity ? "popular" : "";
-      const res = await axiosSecure.get(
+      const res = await axiosInstance.get(
         `/posts/home/${route}?page=${currentPage}&limit=${postPerPage}`
       );
       return res.data;
