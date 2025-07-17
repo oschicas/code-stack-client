@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import bannerImg from "../../../assets/banner_image/banner_image.png";
-import { toast } from "react-toastify";
 
 const Banner = ({ setSearchedTag }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -9,9 +8,6 @@ const Banner = ({ setSearchedTag }) => {
   
   const handleSearch = (e) => {
     e.preventDefault();
-    // if (!searchedText.trim()) {
-    //   return toast.error("Search field can not be empty to search");
-    // }
     setSearchedTag(searchedText.trim());
   };
   return (
