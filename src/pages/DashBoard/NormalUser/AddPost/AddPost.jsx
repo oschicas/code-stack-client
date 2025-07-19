@@ -25,20 +25,28 @@ const AddPost = () => {
     reset,
   } = useForm();
 
-  // fetch post count
+  // fetch post count and post badge
   const {
-    data: postCount,
+    data: postInfo,
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["users-post-count", user?.email],
+    queryKey: ["users-post-count-and-post-badge", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosSecure(`/posts/count?email=${user?.email}`);
-      return res.data;
+      const [postRes, userRes] = await Promise.all([
+        axiosSecure.get(`/posts/count?email=${user?.email}`),
+        axiosSecure.get(`/users/${user?.email}`),
+      ]);
+
+      return {
+        postCount: postRes?.data || 0,
+        badge: userRes?.data?.badge || "bronze",
+      };
     },
   });
-  console.log(postCount);
+
+  console.log('post info', postInfo);
 
   //   post data to database
   const { mutateAsync: updatePost, isPending } = useMutation({
@@ -100,7 +108,7 @@ const AddPost = () => {
     await updatePost(postData);
   };
 
-  if (postCount >= 5) {
+  if (postInfo?.postCount >= 5 && postInfo?.badge === 'bronze') {
     return (
       <div className="max-w-md mx-auto p-6 text-center bg-base-100 shadow-md rounded-lg mt-10">
         <p className="text-lg font-medium mb-4 text-red-500">

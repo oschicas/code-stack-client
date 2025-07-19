@@ -17,3 +17,4 @@ npm packages:
 9. tanstack query
 10. react sweet alert2
 11. react share
+12. stripe js
