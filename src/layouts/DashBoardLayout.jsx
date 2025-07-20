@@ -10,11 +10,13 @@ import {
 import CodeStackLogo from "../components/CodeStackLogo";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import useUserRole from "../hooks/useUserRole";
 
 const DashBoardLayout = () => {
   const { logOut } = useAuth();
 
   const [open, setOpen] = useState(false);
+  const { role, roleLoading } = useUserRole();
 
   const handleLogout = () => {
     logOut()
@@ -28,56 +30,66 @@ const DashBoardLayout = () => {
 
   const dashBoardNavItems = (
     <>
-      <li>
-        {/* normal user links */}
-        <NavLink
-          to="/dashboard/user-profile"
-          className={({ isActive }) =>
-            `flex items-center gap-2 p-2 rounded ${
-              isActive ? "bg-primary text-white" : "hover:bg-base-300"
-            }`
-          }
-        >
-          <FaUserCircle /> My Profile
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/dashboard/add-post"
-          className={({ isActive }) =>
-            `flex items-center gap-2 p-2 rounded ${
-              isActive ? "bg-primary text-white" : "hover:bg-base-300"
-            }`
-          }
-        >
-          <FaPlusCircle /> Add Post
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/dashboard/my-posts"
-          className={({ isActive }) =>
-            `flex items-center gap-2 p-2 rounded ${
-              isActive ? "bg-primary text-white" : "hover:bg-base-300"
-            }`
-          }
-        >
-          <FaClipboardList /> My Posts
-        </NavLink>
-      </li>
+      {/* normal user links */}
+      {role === "user" && !roleLoading && (
+        <>
+          <li>
+            <NavLink
+              to="/dashboard/user-profile"
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-2 rounded ${
+                  isActive ? "bg-primary text-white" : "hover:bg-base-300"
+                }`
+              }
+            >
+              <FaUserCircle /> My Profile
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/add-post"
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-2 rounded ${
+                  isActive ? "bg-primary text-white" : "hover:bg-base-300"
+                }`
+              }
+            >
+              <FaPlusCircle /> Add Post
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/my-posts"
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-2 rounded ${
+                  isActive ? "bg-primary text-white" : "hover:bg-base-300"
+                }`
+              }
+            >
+              <FaClipboardList /> My Posts
+            </NavLink>
+          </li>
+        </>
+      )}
       {/* admin user links */}
-      <li>
-        <NavLink
-          to="/dashboard/admin-profile"
-          className={({ isActive }) =>
-            `flex items-center gap-2 p-2 rounded ${
-              isActive ? "bg-primary text-white" : "hover:bg-base-300"
-            }`
-          }
-        >
-          <FaUserShield /> Admin Profile
-        </NavLink>
-      </li>
+      {role === "admin" && !roleLoading && (
+        <>
+          <li>
+            <NavLink
+              to="/dashboard/admin-profile"
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-2 rounded ${
+                  isActive ? "bg-primary text-white" : "hover:bg-base-300"
+                }`
+              }
+            >
+              <FaUserShield /> Admin Profile
+            </NavLink>
+          </li>
+        </>
+      )}
+
+      {/* logout button */}
       <li>
         <button
           onClick={handleLogout}

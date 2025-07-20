@@ -14,6 +14,8 @@ import MemberShip from "../pages/MemberShip/MemberShip";
 import PostCommented from "../pages/DashBoard/NormalUser/PostCommented/PostCommented";
 import UserProfile from "../pages/DashBoard/NormalUser/UserProfile/UserProfile";
 import AdminProfile from "../pages/DashBoard/AdminUser/AdminProfile/AdminProfile";
+import Forbidden from "../pages/Forbidden/Forbidden";
+import AdminPrivateRoute from "../PrivateRoute/AdminPrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,10 @@ const router = createBrowserRouter([
             <MemberShip></MemberShip>
           </AuthPrivate>
         ),
+      },
+      {
+        path: "/forbidden",
+        element: <Forbidden></Forbidden>,
       },
     ],
   },
@@ -82,7 +88,11 @@ const router = createBrowserRouter([
       // admin user routes
       {
         path: "admin-profile",
-        element: <AdminProfile></AdminProfile>
+        element: (
+          <AdminPrivateRoute>
+            <AdminProfile></AdminProfile>
+          </AdminPrivateRoute>
+        ),
       },
     ],
   },
