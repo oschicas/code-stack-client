@@ -6,13 +6,14 @@ import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
 import DashBoardLayout from "../layouts/DashBoardLayout";
-import MyProfile from "../pages/DashBoard/MyProfile/MyProfile";
 import AuthPrivate from "../PrivateRoute/AuthPrivate";
 import AddPost from "../pages/DashBoard/NormalUser/AddPost/AddPost";
 import MyPosts from "../pages/DashBoard/NormalUser/MyPosts/MyPosts";
 import PostDetails from "../pages/PostDetails/PostDetails";
 import MemberShip from "../pages/MemberShip/MemberShip";
 import PostCommented from "../pages/DashBoard/NormalUser/PostCommented/PostCommented";
+import UserProfile from "../pages/DashBoard/NormalUser/UserProfile/UserProfile";
+import AdminProfile from "../pages/DashBoard/AdminUser/AdminProfile/AdminProfile";
 
 const router = createBrowserRouter([
   {
@@ -24,13 +25,17 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: '/post-details/:id',
-        element: <PostDetails></PostDetails>
+        path: "/post-details/:id",
+        element: <PostDetails></PostDetails>,
       },
       {
-        path: '/membership',
-        element: <AuthPrivate><MemberShip></MemberShip></AuthPrivate>
-      }
+        path: "/membership",
+        element: (
+          <AuthPrivate>
+            <MemberShip></MemberShip>
+          </AuthPrivate>
+        ),
+      },
     ],
   },
   //   authentication layout and it's routes (login & register)
@@ -57,11 +62,11 @@ const router = createBrowserRouter([
       </AuthPrivate>
     ),
     children: [
-      {
-        path: 'my-profile',
-        element: <MyProfile></MyProfile>,
-      },
       //   normal user routes
+      {
+        path: "user-profile",
+        element: <UserProfile></UserProfile>,
+      },
       {
         path: "add-post",
         element: <AddPost></AddPost>,
@@ -72,7 +77,12 @@ const router = createBrowserRouter([
       },
       {
         path: "post-commented/:postId",
-        element: <PostCommented></PostCommented>
+        element: <PostCommented></PostCommented>,
+      },
+      // admin user routes
+      {
+        path: "admin-profile",
+        element: <AdminProfile></AdminProfile>
       },
     ],
   },

@@ -5,6 +5,7 @@ import {
   FaPlusCircle,
   FaClipboardList,
   FaBars,
+  FaUserShield,
 } from "react-icons/fa";
 import CodeStackLogo from "../components/CodeStackLogo";
 import useAuth from "../hooks/useAuth";
@@ -28,8 +29,9 @@ const DashBoardLayout = () => {
   const dashBoardNavItems = (
     <>
       <li>
+        {/* normal user links */}
         <NavLink
-          to="/dashboard/my-profile"
+          to="/dashboard/user-profile"
           className={({ isActive }) =>
             `flex items-center gap-2 p-2 rounded ${
               isActive ? "bg-primary text-white" : "hover:bg-base-300"
@@ -63,8 +65,26 @@ const DashBoardLayout = () => {
           <FaClipboardList /> My Posts
         </NavLink>
       </li>
+      {/* admin user links */}
       <li>
-        <button onClick={handleLogout} className="btn btn-primary btn-outline w-full">Logout</button>
+        <NavLink
+          to="/dashboard/admin-profile"
+          className={({ isActive }) =>
+            `flex items-center gap-2 p-2 rounded ${
+              isActive ? "bg-primary text-white" : "hover:bg-base-300"
+            }`
+          }
+        >
+          <FaUserShield /> Admin Profile
+        </NavLink>
+      </li>
+      <li>
+        <button
+          onClick={handleLogout}
+          className="btn btn-primary btn-outline w-full"
+        >
+          Logout
+        </button>
       </li>
     </>
   );

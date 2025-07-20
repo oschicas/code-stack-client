@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { FaEdit, FaMedal } from "react-icons/fa";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useAuth from "../../../../hooks/useAuth";
 
-const MyProfile = () => {
+const UserProfile = () => {
   const { user } = useAuth(); // user.email, user.displayName, user.photoURL
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
@@ -153,4 +153,4 @@ const MyProfile = () => {
   );
 };
 
-export default MyProfile;
+export default UserProfile;
