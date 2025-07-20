@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { FaComments, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
+import { Link } from "react-router";
 
 const MyPosts = () => {
   const { user } = useAuth();
@@ -101,9 +102,9 @@ const MyPosts = () => {
                     </span>
                   </td>
                   <td>
-                    <button className="btn btn-sm btn-outline flex items-center gap-1 text-blue-600 hover:text-white hover:bg-blue-500">
+                    <Link to={`/dashboard/post-commented/${post?._id}`} className="btn btn-sm btn-outline flex items-center gap-1 text-blue-600 hover:text-white hover:bg-blue-500">
                       <FaComments /> Comment
-                    </button>
+                    </Link>
                   </td>
                   <td>
                     <button

@@ -12,6 +12,7 @@ import AddPost from "../pages/DashBoard/NormalUser/AddPost/AddPost";
 import MyPosts from "../pages/DashBoard/NormalUser/MyPosts/MyPosts";
 import PostDetails from "../pages/PostDetails/PostDetails";
 import MemberShip from "../pages/MemberShip/MemberShip";
+import PostCommented from "../pages/DashBoard/NormalUser/PostCommented/PostCommented";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "my-posts",
         element: <MyPosts></MyPosts>,
+      },
+      {
+        path: "post-commented/:postId",
+        element: <PostCommented></PostCommented>
       },
     ],
   },
