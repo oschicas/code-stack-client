@@ -18,3 +18,4 @@ npm packages:
 10. react sweet alert2
 11. react share
 12. stripe js
+13. react recharts
