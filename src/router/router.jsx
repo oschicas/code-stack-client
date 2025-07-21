@@ -16,6 +16,10 @@ import UserProfile from "../pages/DashBoard/NormalUser/UserProfile/UserProfile";
 import AdminProfile from "../pages/DashBoard/AdminUser/AdminProfile/AdminProfile";
 import Forbidden from "../pages/Forbidden/Forbidden";
 import AdminPrivateRoute from "../PrivateRoute/AdminPrivateRoute";
+import UserPrivateRoute from "../PrivateRoute/UserPrivateRoute";
+import ManageUsers from "../pages/DashBoard/AdminUser/ManageUsers/ManageUsers";
+import ReportedComments from "../pages/DashBoard/AdminUser/ReportedComments/ReportedComments";
+import MakeAnnouncement from "../pages/DashBoard/AdminUser/MakeAnnouncement/MakeAnnouncement";
 
 const router = createBrowserRouter([
   {
@@ -71,19 +75,35 @@ const router = createBrowserRouter([
       //   normal user routes
       {
         path: "user-profile",
-        element: <UserProfile></UserProfile>,
+        element: (
+          <UserPrivateRoute>
+            <UserProfile></UserProfile>
+          </UserPrivateRoute>
+        ),
       },
       {
         path: "add-post",
-        element: <AddPost></AddPost>,
+        element: (
+          <UserPrivateRoute>
+            <AddPost></AddPost>
+          </UserPrivateRoute>
+        ),
       },
       {
         path: "my-posts",
-        element: <MyPosts></MyPosts>,
+        element: (
+          <UserPrivateRoute>
+            <MyPosts></MyPosts>
+          </UserPrivateRoute>
+        ),
       },
       {
         path: "post-commented/:postId",
-        element: <PostCommented></PostCommented>,
+        element: (
+          <UserPrivateRoute>
+            <PostCommented></PostCommented>
+          </UserPrivateRoute>
+        ),
       },
       // admin user routes
       {
@@ -91,6 +111,30 @@ const router = createBrowserRouter([
         element: (
           <AdminPrivateRoute>
             <AdminProfile></AdminProfile>
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "manage-users",
+        element: (
+          <AdminPrivateRoute>
+            <ManageUsers></ManageUsers>
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "reported-comments",
+        element: (
+          <AdminPrivateRoute>
+            <ReportedComments></ReportedComments>
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "make-announcement",
+        element: (
+          <AdminPrivateRoute>
+            <MakeAnnouncement></MakeAnnouncement>
           </AdminPrivateRoute>
         ),
       },

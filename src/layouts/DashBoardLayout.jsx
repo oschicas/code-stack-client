@@ -6,6 +6,9 @@ import {
   FaClipboardList,
   FaBars,
   FaUserShield,
+  FaUsers,
+  FaBullhorn,
+  FaExclamationTriangle,
 } from "react-icons/fa";
 import CodeStackLogo from "../components/CodeStackLogo";
 import useAuth from "../hooks/useAuth";
@@ -84,6 +87,44 @@ const DashBoardLayout = () => {
               }
             >
               <FaUserShield /> Admin Profile
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/manage-users"
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-2 rounded ${
+                  isActive ? "bg-primary text-white" : "hover:bg-base-300"
+                }`
+              }
+            >
+              <FaUsers /> Manage Users
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              to="/dashboard/make-announcement"
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-2 rounded ${
+                  isActive ? "bg-primary text-white" : "hover:bg-base-300"
+                }`
+              }
+            >
+              <FaBullhorn /> Make Announcement
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              to="/dashboard/reported-comments"
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-2 rounded ${
+                  isActive ? "bg-primary text-white" : "hover:bg-base-300"
+                }`
+              }
+            >
+              <FaExclamationTriangle /> Reported Comments
             </NavLink>
           </li>
         </>
