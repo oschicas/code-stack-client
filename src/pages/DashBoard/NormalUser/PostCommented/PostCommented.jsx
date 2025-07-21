@@ -55,7 +55,7 @@ const PostCommented = () => {
     onSuccess: () => {
       refetch();
       toast.success("Reported Successful");
-      queryClient.invalidateQueries(["comments", postId]);
+      queryClient.invalidateQueries({queryKey: ["comments", postId]});
     },
     onError: (error) => {
       toast.error(error.message);

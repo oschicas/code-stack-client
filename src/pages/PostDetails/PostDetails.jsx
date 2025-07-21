@@ -42,7 +42,7 @@ const PostDetails = () => {
     },
     onSuccess: () => {
       refetch();
-      queryClient.invalidateQueries(["post", id]);
+      queryClient.invalidateQueries({queryKey: ["post", id]});
     },
   });
 
@@ -79,7 +79,7 @@ const PostDetails = () => {
       return res.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["comment", id]);
+      queryClient.invalidateQueries({queryKey: ["comment", id]});
       toast.success("Comment Added");
       setCommentText("");
     },

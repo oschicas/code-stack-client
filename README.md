@@ -19,3 +19,4 @@ npm packages:
 11. react share
 12. stripe js
 13. react recharts
+14. use debounce
