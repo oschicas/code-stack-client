@@ -66,6 +66,17 @@ const AddPost = () => {
     onError: () => toast.error("Failed to save post"),
   });
 
+  const {data: tags=[]} = useQuery({
+    queryKey: ['tags'],
+    enabled: !!user?.email,
+    queryFn: async() => {
+      const res = await axiosSecure.get('/tags');
+      return res.data;
+    }
+  });
+
+  console.log(tags);
+
   // image change
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -186,12 +197,9 @@ const AddPost = () => {
             <option value="Select Tag" disabled>
               Select Tag
             </option>
-            <option value="mongodb">MongoDB</option>
-            <option value="express">Express</option>
-            <option value="react">React Js</option>
-            <option value="node">Node Js</option>
-            <option value="next">Next Js</option>
-            <option value="php">PHP</option>
+            {
+              tags?.map(tag => <option key={tag?._id} value={tag?.tag}>{tag?.tag}</option>)
+            }
           </select>
           {errors.tag?.type === "required" && (
             <p className="text-red-500">Please Enter Tag</p>
