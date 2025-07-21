@@ -125,6 +125,7 @@ const NavBar = () => {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end gap-3">
+        {/* notification icon */}
         <div className="relative">
           <IoNotificationsCircleSharp size={35} />
           <p className="absolute -top-3">0</p>
