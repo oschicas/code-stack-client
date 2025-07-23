@@ -16,6 +16,9 @@ const HomePosts = ({searchedTag}) => {
   useEffect(() => {
     if(searchedTag){
       setCurrentPage(1);
+      if (topRef.current) {
+        topRef.current.scrollIntoView({ behavior: "smooth" });
+      }
     }
   }, [searchedTag])
 
