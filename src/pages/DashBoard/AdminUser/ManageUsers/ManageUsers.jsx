@@ -11,7 +11,7 @@ const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
   const [search, setSearch] = useState("");
   const queryClient = useQueryClient();
-  const [debouncedSearch] = useDebounce(search, 500);
+  const [debouncedSearch] = useDebounce(search, 1000);
 
   // fetch users by search
   const { data: users = [], isLoading } = useQuery({
