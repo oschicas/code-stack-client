@@ -6,12 +6,14 @@ import CodeStackLogo from "./CodeStackLogo";
 import { IoNotificationsCircleSharp } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import useUserRole from "../hooks/useUserRole";
 
 const NavBar = () => {
   const { user, loading, logOut } = useAuth();
   const [toggle, setToggle] = useState(false);
   const dropDownRef = useRef(null);
   const axiosSecure = useAxiosSecure();
+  const { role, roleLoading } = useUserRole();
 
   // fetch announcements
   const { data: announcements = [] } = useQuery({
@@ -71,22 +73,29 @@ const NavBar = () => {
         <NavLink
           to={"/"}
           className={({ isActive }) =>
-            `nav-item ${isActive ? "active font-bold text-red-500" : "text-white"}`
+            `nav-item ${
+              isActive ? "active font-bold text-red-500" : "text-white"
+            }`
           }
         >
           Home
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to={"/membership"}
-          className={({ isActive }) =>
-            `nav-item ${isActive ? "active font-bold text-red-500" : "text-white"}`
-          }
-        >
-          Membership
-        </NavLink>
-      </li>
+      {role === "user" && !roleLoading && (
+        <li>
+          <NavLink
+            to={"/membership"}
+            className={({ isActive }) =>
+              `nav-item ${
+                isActive ? "active font-bold text-red-500" : "text-white"
+              }`
+            }
+          >
+            Membership
+          </NavLink>
+        </li>
+      )}
+
       {/* if user is logged in this route will show */}
 
       {user?.email && (
@@ -94,7 +103,9 @@ const NavBar = () => {
           <NavLink
             to={"/dashboard"}
             className={({ isActive }) =>
-              `nav-item ${isActive ? "active font-bold text-red-500" : "text-white"}`
+              `nav-item ${
+                isActive ? "active font-bold text-red-500" : "text-white"
+              }`
             }
           >
             DashBoard
