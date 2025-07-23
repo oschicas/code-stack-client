@@ -49,7 +49,7 @@ const Banner = ({ setSearchedTag }) => {
 
   return (
     <div
-      className="relative bg-cover bg-center min-h-[70vh] lg:min-h-screen "
+      className="relative bg-cover bg-center min-h-[70vh] md:min-h-screen"
       style={{
         backgroundImage: `url(${bannerImg})`,
       }}
@@ -80,7 +80,7 @@ const Banner = ({ setSearchedTag }) => {
             />
             <button
               type="submit"
-              className="absolute z-50 top-2 right-3 btn btn-primary rounded-full"
+              className="absolute z-10 top-2 right-3 btn btn-primary rounded-full"
             >
               <FaSearch /> Search
             </button>

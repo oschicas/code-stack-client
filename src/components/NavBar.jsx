@@ -178,7 +178,7 @@ const NavBar = () => {
                 </div>
               </div>
               {toggle && (
-                <div className="bg-[#0B203A] absolute rounded-md -ml-24 top-0 mt-12 z-50 text-white px-5 py-2 flex flex-col">
+                <div className="bg-[#0B203A] absolute rounded-md -ml-24 top-0 mt-12 text-white px-5 py-2 flex flex-col z-[1000]">
                   <h2 className="text-nowrap">User: {user?.displayName}</h2>
                   <Link to={"/dashboard"} className="hover:bg-[#0d233d71]">
                     Dashboard
