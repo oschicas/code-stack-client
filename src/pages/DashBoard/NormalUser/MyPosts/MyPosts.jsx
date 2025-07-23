@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
@@ -18,6 +18,7 @@ const MyPosts = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const [currentPage, setCurrentPage] = useState(1);
+  const topRef = useRef(null);
   const postPerPage = 10;
 
   // get posts from api
@@ -45,6 +46,13 @@ const MyPosts = () => {
       setCurrentPage(page);
     }
   };
+
+  // page change smooth scroll
+  useEffect(() => {
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [currentPage]);
 
   // post delete by api
   const { mutateAsync: deletePost, isPending } = useMutation({
@@ -100,7 +108,7 @@ const MyPosts = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto p-4">
+    <div className="max-w-5xl mx-auto p-4" ref={topRef}>
       <h2 className="text-3xl font-bold mb-6 text-center">My Posts</h2>
 
       <div className="overflow-x-auto bg-base-100 shadow rounded-lg mb-6">
@@ -157,7 +165,10 @@ const MyPosts = () => {
       {/* pagination feature */}
       <div className="bg-base-100 py-4 px-3 shadow-md flex justify-between items-center">
         <div className="flex items-center gap-1">
-          Showing: <p>{currentPage}-{totalPosts} of {totalPages}</p>
+          Showing:{" "}
+          <p>
+            {currentPage}-{totalPosts} of {totalPages}
+          </p>
         </div>
         <div className="flex items-center gap-3">
           {/* left button */}
