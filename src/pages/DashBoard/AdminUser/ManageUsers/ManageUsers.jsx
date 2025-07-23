@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useAuth from "../../../../hooks/useAuth";
 import { FaSearch } from "react-icons/fa";
@@ -12,16 +12,42 @@ const ManageUsers = () => {
   const [search, setSearch] = useState("");
   const queryClient = useQueryClient();
   const [debouncedSearch] = useDebounce(search, 1000);
+  const [currentPage, setCurrentPage] = useState(1);
+  const topRef = useRef(null);
 
-  // fetch users by search
-  const { data: users = [], isLoading } = useQuery({
-    queryKey: ["users", debouncedSearch],
+  const itemsPerPage = 10;
+
+  // fetch users by search and pages
+  const { data, isLoading } = useQuery({
+    queryKey: ["users", debouncedSearch, currentPage],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users?search=${search}`);
+      const res = await axiosSecure.get(
+        `/users?search=${search}&page=${currentPage}&limit=${itemsPerPage}`
+      );
       return res.data;
     },
   });
+
+  // users
+  const users = data?.users || [];
+
+  // users pages
+  const totalUser = data?.total || 0;
+  const totalPages = Math.ceil(totalUser / itemsPerPage);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  // page change scroll to top smooth
+  useEffect(() => {
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [currentPage]);
 
   // patch users (admin <> user)
   const { mutateAsync: toggleAdmin, isPending } = useMutation({
@@ -51,7 +77,7 @@ const ManageUsers = () => {
     return <p className="text-center py-4 text-gray-500">No users found.</p>;
   }
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-6">
+    <div className="max-w-6xl mx-auto p-6 space-y-6" ref={topRef}>
       <h2 className="text-2xl font-bold mb-4">Manage Users</h2>
 
       {/* Search */}
@@ -108,6 +134,46 @@ const ManageUsers = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      {/* pagination feature */}
+      <div className="bg-gray-200 py-4 px-2 rounded-xl flex justify-end">
+        <div className="flex items-center gap-2">
+          {/* previous button */}
+          <div>
+            <button
+              className="btn btn-sm btn-outline btn-primary"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Prv
+            </button>
+          </div>
+          {/* page numbers button */}
+          <div className="space-x-2">
+            {[...Array(totalPages).keys()]?.map((page) => (
+              <button
+                key={page}
+                className={`btn ${
+                  currentPage === page + 1
+                    ? "btn-primary"
+                    : "btn-outline btn-primary"
+                }`}
+                onClick={() => handlePageChange(page + 1)}
+              >
+                {page + 1}
+              </button>
+            ))}
+          </div>
+          <div>
+            <button
+              className="btn btn-sm btn-outline btn-primary"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
