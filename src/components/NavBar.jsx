@@ -71,7 +71,7 @@ const NavBar = () => {
         <NavLink
           to={"/"}
           className={({ isActive }) =>
-            `nav-item ${isActive ? "active font-bold text-white" : ""}`
+            `nav-item ${isActive ? "active font-bold text-red-500" : "text-white"}`
           }
         >
           Home
@@ -81,7 +81,7 @@ const NavBar = () => {
         <NavLink
           to={"/membership"}
           className={({ isActive }) =>
-            `nav-item ${isActive ? "active font-bold text-white" : ""}`
+            `nav-item ${isActive ? "active font-bold text-red-500" : "text-white"}`
           }
         >
           Membership
@@ -94,7 +94,7 @@ const NavBar = () => {
           <NavLink
             to={"/dashboard"}
             className={({ isActive }) =>
-              `nav-item ${isActive ? "active font-bold text-white" : ""}`
+              `nav-item ${isActive ? "active font-bold text-red-500" : "text-white"}`
             }
           >
             DashBoard
@@ -130,7 +130,7 @@ const NavBar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-[#0B213A] rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             {navItems}
           </ul>
@@ -167,7 +167,7 @@ const NavBar = () => {
                 </div>
               </div>
               {toggle && (
-                <div className="bg-[#0B203A] absolute -ml-24 top-0 mt-12 z-50 text-white px-5 py-2 flex flex-col">
+                <div className="bg-[#0B203A] absolute rounded-md -ml-24 top-0 mt-12 z-50 text-white px-5 py-2 flex flex-col">
                   <h2 className="text-nowrap">User: {user?.displayName}</h2>
                   <Link to={"/dashboard"} className="hover:bg-[#0d233d71]">
                     Dashboard
