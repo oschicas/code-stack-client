@@ -1,15 +1,52 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import bannerImg from "../../../assets/banner_image/banner_image.png";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import useAxios from "../../../hooks/useAxios";
 
 const Banner = ({ setSearchedTag }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [searchedText, setSearchedText] = useState("");
-  
+  const axiosInstance = useAxios();
+  const queryClient = useQueryClient();
+
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchedTag(searchedText.trim());
+    if (!searchedText.trim()) {
+      return;
+    }
+    searchedMutation(searchedText.trim());
   };
+  // get searched tags
+  const { data: tags = [], refetch } = useQuery({
+    queryKey: ["searched-tag", searchedText],
+    queryFn: async () => {
+      const res = await axiosInstance.get("/searched-tag-get");
+      return res.data;
+    },
+  });
+
+  console.log("all tags that were searched", tags);
+
+  // post searched tag
+  const { mutateAsync: searchedMutation } = useMutation({
+    mutationKey: ["searched", handleSearch],
+    mutationFn: async (searched) => {
+      const searchedInfo = {
+        tag: searched,
+        createdAt: new Date().toISOString(),
+      };
+      const res = await axiosInstance.post("/searched-tag-save", searchedInfo);
+      return res.data;
+    },
+    onSuccess: () => {
+      // saved to database
+      queryClient.invalidateQueries({ queryKey: ["searched-tag"] });
+      refetch();
+    },
+  });
+
   return (
     <div
       className="relative bg-cover bg-center min-h-[70vh] lg:min-h-screen "
@@ -41,29 +78,22 @@ const Banner = ({ setSearchedTag }) => {
               value={searchedText}
               onChange={(e) => setSearchedText(e.target.value)}
             />
-            <button type="submit" className="absolute z-50 top-2 right-3 btn btn-primary rounded-full">
+            <button
+              type="submit"
+              className="absolute z-50 top-2 right-3 btn btn-primary rounded-full"
+            >
               <FaSearch /> Search
             </button>
           </form>
 
           {/* Popular Keywords */}
-          <div className="text-sm mt-2">
+          <div className="text-sm mt-2 space-x-1">
             <span className="font-semibold">Popular Topics:</span>{" "}
-            <span className="link link-hover text-gray-200 hover:text-white">
-              Code
-            </span>
-            ,{" "}
-            <span className="link link-hover text-gray-200 hover:text-white">
-              Basic
-            </span>
-            ,{" "}
-            <span className="link link-hover text-gray-200 hover:text-white">
-              Blog
-            </span>
-            ,{" "}
-            <span className="link link-hover text-gray-200 hover:text-white">
-              WordPress
-            </span>
+            {tags?.slice(0, 3).map((tag, index) => (
+              <span onClick={() => setSearchedTag(tag?.tag)} key={index} className="link link-hover text-gray-200 hover:text-white">
+                {tag?.tag},
+              </span>
+            ))}
           </div>
         </div>
       </div>

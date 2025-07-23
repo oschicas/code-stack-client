@@ -36,6 +36,8 @@ const HomePosts = ({searchedTag}) => {
     },
   });
 
+
+
   console.log(data?.posts);
   console.log(data?.total);
 
