@@ -16,7 +16,6 @@ const NavBar = () => {
   // fetch announcements
   const { data: announcements = [] } = useQuery({
     queryKey: ["announcement"],
-    enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure("/announcements");
       return res.data;

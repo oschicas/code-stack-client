@@ -139,7 +139,7 @@ const ManageUsers = () => {
       <div className="bg-gray-100 py-4 px-2 shadow-md rounded-xl flex items-center justify-between">
         <div>
           <p>
-            Showing: {currentPage}-{itemsPerPage} of {totalUser}
+            Showing: {currentPage}-{totalUser} of {totalPages}
           </p>
         </div>
         <div className="flex items-center gap-2">
