@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useRef, useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useAuth from "../../../../hooks/useAuth";
-import { FaSearch } from "react-icons/fa";
+import { FaChevronCircleLeft, FaChevronCircleRight, FaSearch } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useDebounce } from "use-debounce";
 
@@ -136,7 +136,12 @@ const ManageUsers = () => {
         </table>
       </div>
       {/* pagination feature */}
-      <div className="bg-gray-200 py-4 px-2 rounded-xl flex justify-end">
+      <div className="bg-gray-100 py-4 px-2 shadow-md rounded-xl flex items-center justify-between">
+        <div>
+          <p>
+            Showing: {currentPage}-{itemsPerPage} of {totalUser}
+          </p>
+        </div>
         <div className="flex items-center gap-2">
           {/* previous button */}
           <div>
@@ -145,7 +150,7 @@ const ManageUsers = () => {
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
             >
-              Prv
+              <FaChevronCircleLeft size={20} />
             </button>
           </div>
           {/* page numbers button */}
@@ -164,13 +169,14 @@ const ManageUsers = () => {
               </button>
             ))}
           </div>
+          {/* next button */}
           <div>
             <button
               className="btn btn-sm btn-outline btn-primary"
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
             >
-              Next
+              <FaChevronCircleRight size={20} />
             </button>
           </div>
         </div>
