@@ -87,7 +87,7 @@ const Banner = ({ setSearchedTag }) => {
           </form>
 
           {/* Popular Keywords */}
-          <div className="text-sm mt-2 space-x-1">
+          <div className="mt-2 space-x-1 text-lg">
             <span className="font-semibold">Popular Topics:</span>{" "}
             {tags?.slice(0, 3).map((tag, index) => (
               <span onClick={() => setSearchedTag(tag?.tag)} key={index} className="link link-hover text-gray-200 hover:text-white">
