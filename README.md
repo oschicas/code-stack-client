@@ -4,7 +4,7 @@
 
 In this web application people can learn coding topics theory like html, css, tailwind, daisyui, react, react router, stripe, axios, react custom hook etc many more topics. Also can give user his valuable comment on any post or vote(like or dislike).
 
-3) live URL: 
+3) live URL: https://assignment-12-b4778.web.app/
 
 4) key features:
 
