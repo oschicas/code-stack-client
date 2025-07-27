@@ -183,7 +183,7 @@ const AddPost = () => {
             className="input w-full focus:outline-0"
           />
           {imgPreview && (
-            <img src={imgPreview} className="w-32" alt={imgPreview} />
+            <img src={imgPreview} className="w-32" />
           )}
         </div>
         {/* tag select field */}
