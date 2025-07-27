@@ -5,13 +5,14 @@ import { Bounce, toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import useAxios from "../../../hooks/useAxios";
 
 const Login = () => {
   const { LogIn } = useAuth();
   const [show, setShow] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
+  const axiosInstance = useAxios();
 
   const from = location?.state?.from || "/";
 
@@ -23,8 +24,20 @@ const Login = () => {
 
   const onSubmit = (data) => {
     LogIn(data.email, data.password)
-      .then((result) => {
-        const currentUser = result.user;
+      .then(async(result) => {
+        const currentUser = result?.user;
+        
+        // get token from backend
+        const res = await axiosInstance.post('/jwt', {
+          email: currentUser?.email
+        });
+
+        const token = res.data.token;
+
+        // save token to local storage
+        localStorage.setItem('access-token', token);
+
+
         toast.success(
           `successfully logged in user: ${currentUser.displayName}`,
           {
