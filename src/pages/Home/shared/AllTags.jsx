@@ -8,7 +8,7 @@ const AllTags = ({ setSearchedTag }) => {
   const { data: tags = [], isLoading } = useQuery({
     queryKey: ["tags"],
     queryFn: async () => {
-      const res = await axiosInstance.get("/posts/tags");
+      const res = await axiosInstance.get("/tags");
       return res.data;
     },
   });
