@@ -1,12 +1,11 @@
-1) project name:CodeStack
+project name:CodeStack
 
-2) purpose:
-
+project overview:
 In this web application people can learn coding topics theory like html, css, tailwind, daisyui, react, react router, stripe, axios, react custom hook etc many more topics. Also can give user his valuable comment on any post or vote(like or dislike).
 
-3) live URL: https://assignment-12-b4778.web.app/
+3. live URL: https://assignment-12-b4778.web.app/
 
-4) key features:
+key features:
 
 1. Anyone can create any account by clicking on the join us button it will redirect to login page. Where user can go to register page also.
 2. By default after creating an account the user will badge of the website would be bronze.
@@ -27,7 +26,7 @@ In this web application people can learn coding topics theory like html, css, ta
 17. There are a Announcement route. Where admin can post announcement
 18. In the reported comments route user can see all the report has done by the user. If the report is unfaithful to the user of the post. The admin can simply delete the comment or dismiss the comment
 
-5) npm packages:
+npm packages:
 
 1. daisyui
 2. tailwind
@@ -43,3 +42,30 @@ In this web application people can learn coding topics theory like html, css, ta
 12. stripe js
 13. react recharts
 14. use debounce
+
+dependencies:
+1. "@stripe/react-stripe-js": "^3.7.0",
+2. "@stripe/stripe-js": "^7.5.0",
+3. "@tailwindcss/vite": "^4.1.11",
+4. "@tanstack/react-query": "^5.83.0",
+5. "axios": "^1.10.0",
+6. "daisyui": "^5.0.46",
+7. "firebase": "^11.10.0",
+8. "react": "^19.1.0",
+9. "react-dom": "^19.1.0",
+10. "react-hook-form": "^7.60.0",
+11. "react-icons": "^5.5.0",
+12. "react-router": "^7.6.3",
+13. "react-share": "^5.2.2",
+14. "react-spinners": "^0.17.0",
+15. "react-toastify": "^11.0.5",
+16. "recharts": "^3.1.0",
+17. "sweetalert2": "^11.22.2",
+18. "tailwindcss": "^4.1.11",
+19. "use-debounce": "^10.0.5"
+
+use project Locally:
+1. open the project in vs code
+2. then open terminal then type npm run dev
+3. this will give a localhost link
+4. click on it and you can see the web app
