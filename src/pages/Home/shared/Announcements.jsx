@@ -20,7 +20,7 @@ const Announcements = () => {
   }
 
   return (
-    <section className="max-w-6xl mx-auto p-6 mt-10">
+    <section className="max-w-10/12 mx-auto p-6 mt-10">
       <div className="flex items-center gap-2 mb-6">
         <FaBullhorn className="text-2xl text-primary" />
         <h2 className="text-2xl font-bold">Latest Announcements</h2>

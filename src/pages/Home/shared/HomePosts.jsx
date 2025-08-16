@@ -75,7 +75,7 @@ const HomePosts = ({searchedTag}) => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto p-4 space-y-5" ref={topRef}>
+    <div className="max-w-10/12 mx-auto p-4 space-y-5" ref={topRef}>
       <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
         <h2 className="text-2xl font-bold">All Posts</h2>
         <button className="btn btn-sm btn-outline" onClick={handleToggle}>
@@ -88,7 +88,7 @@ const HomePosts = ({searchedTag}) => {
         <p className="text-center text-gray-500">No posts available.</p>
       ) : (
         // post card start
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {data?.posts.map((post) => (
             <div
               key={post?._id}

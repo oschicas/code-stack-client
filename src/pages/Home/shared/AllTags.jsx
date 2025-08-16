@@ -22,7 +22,7 @@ const AllTags = ({ setSearchedTag }) => {
   }
   
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
+    <div className="max-w-10/12 mx-auto px-4 py-8">
       <h2 className="text-2xl font-bold mb-4">Browse by Tags</h2>
       <div className="flex flex-wrap gap-3">
         {tags?.map((tag, index) => (
