@@ -124,6 +124,18 @@ const NavBar = () => {
           Resources
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to={"/contact-us"}
+          className={({ isActive }) =>
+            `nav-item ${
+              isActive ? "active font-bold text-red-500" : "text-white"
+            }`
+          }
+        >
+          Contact Us
+        </NavLink>
+      </li>
     </>
   );
   return (

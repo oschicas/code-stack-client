@@ -21,6 +21,7 @@ import ManageUsers from "../pages/DashBoard/AdminUser/ManageUsers/ManageUsers";
 import ReportedComments from "../pages/DashBoard/AdminUser/ReportedComments/ReportedComments";
 import MakeAnnouncement from "../pages/DashBoard/AdminUser/MakeAnnouncement/MakeAnnouncement";
 import Resources from "../pages/Resources/Resources";
+import ContactUs from "../pages/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: '/resources',
         element: <Resources></Resources>
+      },
+      {
+        path: '/contact-us',
+        element: <ContactUs></ContactUs>
       },
     ],
   },
