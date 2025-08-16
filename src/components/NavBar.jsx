@@ -112,6 +112,18 @@ const NavBar = () => {
           </NavLink>
         </li>
       )}
+      <li>
+        <NavLink
+          to={"/resources"}
+          className={({ isActive }) =>
+            `nav-item ${
+              isActive ? "active font-bold text-red-500" : "text-white"
+            }`
+          }
+        >
+          Resources
+        </NavLink>
+      </li>
     </>
   );
   return (

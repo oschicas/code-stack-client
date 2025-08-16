@@ -20,6 +20,7 @@ import UserPrivateRoute from "../PrivateRoute/UserPrivateRoute";
 import ManageUsers from "../pages/DashBoard/AdminUser/ManageUsers/ManageUsers";
 import ReportedComments from "../pages/DashBoard/AdminUser/ReportedComments/ReportedComments";
 import MakeAnnouncement from "../pages/DashBoard/AdminUser/MakeAnnouncement/MakeAnnouncement";
+import Resources from "../pages/Resources/Resources";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/forbidden",
         element: <Forbidden></Forbidden>,
+      },
+      {
+        path: '/resources',
+        element: <Resources></Resources>
       },
     ],
   },
