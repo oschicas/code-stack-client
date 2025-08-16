@@ -75,7 +75,7 @@ const HomePosts = ({searchedTag}) => {
   }
 
   return (
-    <div className="max-w-10/12 mx-auto p-4 space-y-5" ref={topRef}>
+    <div className="max-w-10/12 mx-auto space-y-5" ref={topRef}>
       <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
         <h2 className="text-2xl font-bold">All Posts</h2>
         <button className="btn btn-sm btn-outline" onClick={handleToggle}>
