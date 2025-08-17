@@ -6,6 +6,7 @@ import Announcements from "../shared/Announcements";
 import NewsLetter from "../shared/NewsLetter";
 import FAQ from "../shared/FAQ";
 import Reviews from "../shared/Reviews";
+import PopularPosts from "../shared/PopularPosts";
 
 const Home = () => {
   const [searchedTag, setSearchedTag] = useState("");
@@ -16,6 +17,7 @@ const Home = () => {
       <div className="space-y-8 my-8">
         <AllTags setSearchedTag={setSearchedTag}></AllTags>
         <HomePosts searchedTag={searchedTag}></HomePosts>
+        <PopularPosts></PopularPosts>
         <Announcements></Announcements>
         <Reviews></Reviews>
         <FAQ></FAQ>

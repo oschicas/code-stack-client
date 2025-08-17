@@ -4,8 +4,9 @@ import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { useNavigate } from "react-router";
 import useAxios from "../../../hooks/useAxios";
 import PostCard from "./PostCard";
+import { BsPostcardFill } from "react-icons/bs";
 
-const HomePosts = ({searchedTag}) => {
+const HomePosts = ({ searchedTag }) => {
   const axiosInstance = useAxios();
   const [currentPage, setCurrentPage] = useState(1);
   const [sortByPopularity, setSortByPopularity] = useState(false);
@@ -14,21 +15,21 @@ const HomePosts = ({searchedTag}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(searchedTag){
+    if (searchedTag) {
       setCurrentPage(1);
       if (topRef.current) {
         topRef.current.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [searchedTag])
+  }, [searchedTag]);
 
   //   fetching post by normal, popular and by search
   const { data, isLoading } = useQuery({
     queryKey: ["posts", currentPage, sortByPopularity, searchedTag],
     queryFn: async () => {
-      if(searchedTag){
+      if (searchedTag) {
         const res = await axiosInstance.get(`/posts/search?tag=${searchedTag}`);
-        return {posts: res.data, total: res.data.length}
+        return { posts: res.data, total: res.data.length };
       }
 
       const route = sortByPopularity ? "popular" : "";
@@ -38,8 +39,6 @@ const HomePosts = ({searchedTag}) => {
       return res.data;
     },
   });
-
-
 
   console.log(data?.posts);
   console.log(data?.total);
@@ -77,7 +76,12 @@ const HomePosts = ({searchedTag}) => {
   return (
     <div className="max-w-10/12 mx-auto space-y-5" ref={topRef}>
       <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
-        <h2 className="text-2xl font-bold">All Posts</h2>
+        <h2 className="text-2xl font-bold flex items-center gap-2">
+          <span className="text-primary">
+            <BsPostcardFill size={25} />
+          </span>
+          Posts
+        </h2>
         <button className="btn btn-sm btn-outline" onClick={handleToggle}>
           {sortByPopularity ? "Sort by Newest" : "Sort by Popularity"}
         </button>
@@ -90,7 +94,7 @@ const HomePosts = ({searchedTag}) => {
         // post card start
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {data?.posts.map((post) => (
-              <PostCard post={post}></PostCard>
+            <PostCard post={post}></PostCard>
           ))}
         </div>
         // post card end

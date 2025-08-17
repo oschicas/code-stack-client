@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxios from "../../../hooks/useAxios";
+import { IoMdPricetags } from "react-icons/io";
 
 const AllTags = ({ setSearchedTag }) => {
   const axiosInstance = useAxios();
@@ -20,10 +21,15 @@ const AllTags = ({ setSearchedTag }) => {
       </div>
     );
   }
-  
+
   return (
     <div className="max-w-10/12 mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Browse by Tags</h2>
+      <h2 className="text-2xl font-bold flex items-center gap-2">
+        <span className="text-primary">
+          <IoMdPricetags size={25} />
+        </span>
+        Browse By Tags
+      </h2>
       <div className="flex flex-wrap gap-3">
         {tags?.map((tag, index) => (
           <button
