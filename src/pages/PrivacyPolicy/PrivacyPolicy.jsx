@@ -19,10 +19,10 @@ const PrivacyPolicy = () => {
         </p>
       </div>
 
-      <div className="bg-[#0B213A] rounded-xl shadow-xl p-8 sm:p-10 space-y-8">
+      <div className="rounded-xl shadow-xl p-8 sm:p-10 space-y-8 text-black">
         {/* Introduction */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white flex items-center gap-2">
+          <h2 className="text-2xl font-semibold text-black flex items-center gap-2">
             <FaUserLock className="text-blue-400" /> Introduction
           </h2>
           <p>
@@ -35,7 +35,7 @@ const PrivacyPolicy = () => {
 
         {/* Information Collection */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">
+          <h2 className="text-2xl font-semibold text-black">
             1. Information We Collect
           </h2>
           <p>We may collect the following types of information:</p>
@@ -60,7 +60,7 @@ const PrivacyPolicy = () => {
 
         {/* Data Usage */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">
+          <h2 className="text-2xl font-semibold text-black">
             2. How We Use Your Information
           </h2>
           <p>Your information helps us:</p>
@@ -75,7 +75,7 @@ const PrivacyPolicy = () => {
 
         {/* Data Sharing */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">
+          <h2 className="text-2xl font-semibold text-black">
             3. Data Sharing & Disclosure
           </h2>
           <p>

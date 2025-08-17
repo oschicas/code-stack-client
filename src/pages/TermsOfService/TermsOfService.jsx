@@ -25,10 +25,10 @@ const TermsOfService = () => {
         <p className="text-lg text-gray-600">Effective Date: {currentDate}</p>
       </div>
 
-      <div className="bg-[#0B213A] rounded-xl shadow-xl p-8 sm:p-10 space-y-8">
+      <div className="rounded-xl shadow-xl p-8 sm:p-10 space-y-8 text-black">
         {/* Introduction */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white flex items-center gap-2">
+          <h2 className="text-2xl font-semibold text-black flex items-center gap-2">
             <FaHandshake className="text-blue-400" /> 1. Acceptance of Terms
           </h2>
           <p>
@@ -39,7 +39,7 @@ const TermsOfService = () => {
 
         {/* User Responsibilities */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white flex items-center gap-2">
+          <h2 className="text-2xl font-semibold text-black flex items-center gap-2">
             <FaUserCheck className="text-blue-400" /> 2. User Responsibilities
           </h2>
           <p>As a user, you agree to:</p>
@@ -54,7 +54,7 @@ const TermsOfService = () => {
 
         {/* Prohibited Conduct */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white flex items-center gap-2">
+          <h2 className="text-2xl font-semibold text-black flex items-center gap-2">
             <FaBan className="text-blue-400" /> 3. Prohibited Activities
           </h2>
           <p>You may not:</p>
@@ -69,7 +69,7 @@ const TermsOfService = () => {
 
         {/* Content Ownership */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">4. Content Ownership</h2>
+          <h2 className="text-2xl font-semibold text-black">4. Content Ownership</h2>
           <div className="space-y-2">
             <p>
               <strong>Your Content:</strong> You retain ownership of content you post, but grant us a 
@@ -84,7 +84,7 @@ const TermsOfService = () => {
 
         {/* Payments & Subscriptions */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">5. Payments & Refunds</h2>
+          <h2 className="text-2xl font-semibold text-black">5. Payments & Refunds</h2>
           <ul className="list-disc pl-6 space-y-2">
             <li>All fees are non-refundable except as required by law</li>
             <li>We may change subscription prices with 30 days notice</li>
@@ -94,7 +94,7 @@ const TermsOfService = () => {
 
         {/* Termination */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">6. Termination</h2>
+          <h2 className="text-2xl font-semibold text-black">6. Termination</h2>
           <p>
             We may suspend or terminate your account at our discretion if you violate these Terms. 
             You may terminate your account at any time through your dashboard.
@@ -103,7 +103,7 @@ const TermsOfService = () => {
 
         {/* Disclaimers */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white flex items-center gap-2">
+          <h2 className="text-2xl font-semibold text-black flex items-center gap-2">
             <FaExclamationTriangle className="text-blue-400" /> 7. Disclaimers
           </h2>
           <p>
@@ -118,7 +118,7 @@ const TermsOfService = () => {
 
         {/* Limitation of Liability */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white flex items-center gap-2">
+          <h2 className="text-2xl font-semibold text-black flex items-center gap-2">
             <FaBalanceScale className="text-blue-400" /> 8. Limitation of Liability
           </h2>
           <p>
@@ -129,7 +129,7 @@ const TermsOfService = () => {
 
         {/* Governing Law */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">9. Governing Law</h2>
+          <h2 className="text-2xl font-semibold text-black">9. Governing Law</h2>
           <p>
             These Terms shall be governed by the laws of [Your State/Country] without regard to 
             its conflict of law provisions.
@@ -138,7 +138,7 @@ const TermsOfService = () => {
 
         {/* Changes */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold text-white">10. Changes to Terms</h2>
+          <h2 className="text-2xl font-semibold text-black">10. Changes to Terms</h2>
           <p>
             We reserve the right to modify these Terms at any time. Continued use after changes 
             constitutes acceptance of the new Terms.
@@ -147,7 +147,7 @@ const TermsOfService = () => {
 
         {/* Contact */}
         <section className="space-y-4 pt-6">
-          <h2 className="text-2xl font-semibold text-white">Contact Information</h2>
+          <h2 className="text-2xl font-semibold text-black">Contact Information</h2>
           <p>
             For questions about these Terms, contact us at:
           </p>
