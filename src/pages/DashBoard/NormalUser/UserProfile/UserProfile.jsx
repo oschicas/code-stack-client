@@ -117,7 +117,7 @@ const UserProfile = () => {
                 setIsEditing(true);
                 reset({ aboutMe: userData?.aboutMe || "" });
               }}
-              className="btn btn-sm btn-outline flex items-center gap-2"
+              className="btn btn-sm btn-outline btn-primary flex items-center gap-2"
             >
               <FaEdit /> Edit
             </button>
