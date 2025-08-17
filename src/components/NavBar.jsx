@@ -74,7 +74,7 @@ const NavBar = () => {
           to={"/"}
           className={({ isActive }) =>
             `nav-item ${
-              isActive ? "active font-bold text-[#0B213A]" : "text-white"
+              isActive ? "active font-bold text-primary" : "text-white"
             }`
           }
         >
@@ -86,7 +86,7 @@ const NavBar = () => {
           to={"/all-posts"}
           className={({ isActive }) =>
             `nav-item ${
-              isActive ? "active font-bold text-[#0B213A]" : "text-white"
+              isActive ? "active font-bold text-primary" : "text-white"
             }`
           }
         >
@@ -99,7 +99,7 @@ const NavBar = () => {
             to={"/membership"}
             className={({ isActive }) =>
               `nav-item ${
-                isActive ? "active font-bold text-[#0B213A]" : "text-white"
+                isActive ? "active font-bold text-primary" : "text-white"
               }`
             }
           >
@@ -113,7 +113,7 @@ const NavBar = () => {
           to={"/resources"}
           className={({ isActive }) =>
             `nav-item ${
-              isActive ? "active font-bold text-[#0B213A]" : "text-white"
+              isActive ? "active font-bold text-primary" : "text-white"
             }`
           }
         >
@@ -125,7 +125,7 @@ const NavBar = () => {
           to={"/privacy"}
           className={({ isActive }) =>
             `nav-item ${
-              isActive ? "active font-bold text-[#0B213A]" : "text-white"
+              isActive ? "active font-bold text-primary" : "text-white"
             }`
           }
         >
@@ -137,7 +137,7 @@ const NavBar = () => {
           to={"/terms"}
           className={({ isActive }) =>
             `nav-item ${
-              isActive ? "active font-bold text-[#0B213A]" : "text-white"
+              isActive ? "active font-bold text-primary" : "text-white"
             }`
           }
         >
@@ -149,7 +149,7 @@ const NavBar = () => {
           to={"/contact-us"}
           className={({ isActive }) =>
             `nav-item ${
-              isActive ? "active font-bold text-[#0B213A]" : "text-white"
+              isActive ? "active font-bold text-primary" : "text-white"
             }`
           }
         >
@@ -165,7 +165,7 @@ const NavBar = () => {
             to={"/dashboard"}
             className={({ isActive }) =>
               `nav-item ${
-                isActive ? "active font-bold text-[#0B213A]" : "text-white"
+                isActive ? "active font-bold text-primary" : "text-white"
               }`
             }
           >
@@ -202,7 +202,7 @@ const NavBar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-[#0B213A] rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-primary rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             {navItems}
           </ul>
@@ -268,7 +268,7 @@ const NavBar = () => {
                 </div>
               </div>
               {toggle && (
-                <div className="bg-[#0B203A] absolute rounded-md -ml-24 top-0 mt-12 text-white px-5 py-2 flex flex-col z-[1000]">
+                <div className="bg-primary absolute rounded-md right-0 top-0 mt-12 text-white px-5 py-2 flex flex-col z-[1000]">
                   <h2 className="text-nowrap">User: {user?.displayName}</h2>
                   <Link to={"/dashboard"} className="hover:bg-[#0d233d71]">
                     Dashboard

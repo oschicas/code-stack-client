@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 const RootLayout = () => {
     return (
         <div>
-            <nav className='fixed top-0 z-50 w-full backdrop-blur-md bg-primary/15'>
+            <nav className='fixed top-0 z-50 w-full backdrop-blur-md bg-primary/30'>
                 <NavBar></NavBar>
             </nav>
             <div className='min-h-[calc(100vh-65px)]'>
