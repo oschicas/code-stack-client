@@ -14,27 +14,32 @@ const FAQ = () => {
     {
       question: "How do I create an account?",
       answer:
-        "Creating an account is simple. Click on the 'Sign Up' button in the top right corner, fill in your details, and verify your email address. You'll be ready to start in less than a minute!",
+        "Creating an account is simple. Click on the 'Join Us' button in the top right corner. It will take you to login page. In the login page 'login' button under you will find a text 'Have an account Register'. Just click to 'Register' this will take you to register page. Just fill up the form that's it.",
     },
     {
       question: "What payment methods do you accept?",
       answer:
-        "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. All transactions are securely processed through our payment gateway.",
+        "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. All transactions are securely processed through our payment gateway is 'Stripe'.",
     },
     {
       question: "Can I cancel my subscription anytime?",
       answer:
-        "Yes, you can cancel your subscription at any time from your account settings. Your access will continue until the end of your current billing period.",
+        "No, you can't. We have a privacy & policy it is in the footer section below you will find it. Just click on it. This this navigate you privacy & policy page. Read it carefully",
     },
     {
-      question: "How do I reset my password?",
+      question: "How to post in this web application?",
       answer:
-        "Click 'Forgot Password' on the login page, enter your email address, and we'll send you a link to reset your password. The link will expire in 24 hours for security reasons.",
+        "To post you just need to register then login. Then can simply go the dashboard and add post button in the left(for mobile and tablet you just need to click on hamburger icon you will find it) you can post your necessary post.",
     },
     {
-      question: "Where can I find documentation?",
+      question: "Can I like or comment in a post?",
       answer:
-        "Our comprehensive documentation is available in the 'Resources' section of your dashboard. You can also access video tutorials and community forums for additional help.",
+        "Of course you can. You just need to login the page and you can vote(like, dislike) and can comment in a post only one comment per post.",
+    },
+    {
+      question: "After creating a post what if I want to delete the post?",
+      answer:
+        "Yes you can. You just need to simply login with user & password or google login. Then in the dashboard in the left you will find My posts button(for the mobile and tablet top hamburger icon click on it you will find it). There are all the post are created by you. You can see the post and also delete the post.",
     },
   ];
 
