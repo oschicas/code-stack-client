@@ -96,7 +96,7 @@ const NewsLetter = () => {
                   <input
                     type="text"
                     placeholder="John Doe"
-                    className="input focus:outline-0"
+                    className="input focus:outline-0 w-full"
                     {...register("name")}
                   />
                 </div>
@@ -108,7 +108,7 @@ const NewsLetter = () => {
                   <input
                     type="email"
                     placeholder="your@email.com"
-                    className={`input focus:outline-0 ${
+                    className={`input focus:outline-0 w-full ${
                       errors.email ? "input-error" : ""
                     }`}
                     {...register("email", {
