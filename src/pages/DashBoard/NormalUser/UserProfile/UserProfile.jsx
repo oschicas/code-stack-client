@@ -18,7 +18,7 @@ const UserProfile = () => {
     data: userData,
     isLoading,
     error,
-    refetch
+    refetch,
   } = useQuery({
     queryKey: ["user", user?.email],
     enabled: !!user?.email,
@@ -29,7 +29,7 @@ const UserProfile = () => {
   });
 
   // Mutation to update About Me
-  const { mutateAsync: updateAboutMe, isPending } = useMutation({
+  const { mutateAsync: updateInfo, isPending } = useMutation({
     mutationFn: async (data) => {
       const res = await axiosSecure.patch(`/users/${user.email}`, data);
       return res.data;
@@ -45,7 +45,8 @@ const UserProfile = () => {
   });
 
   const onSubmit = async (formData) => {
-    await updateAboutMe({ aboutMe: formData.aboutMe });
+    // await updateInfo({ aboutMe: formData.aboutMe });
+    await updateInfo(formData);
     reset();
   };
 
@@ -79,7 +80,7 @@ const UserProfile = () => {
     return <p className="text-center text-red-500">Failed to load profile.</p>;
 
   return (
-    <div className="max-w-3xl mx-auto py-4">
+    <div className="w-full mx-auto">
       <div className="bg-base-100 shadow-md rounded-lg p-6 flex flex-col md:flex-row items-center gap-6">
         <img
           src={userData?.image || user?.photoURL}
@@ -92,6 +93,12 @@ const UserProfile = () => {
           </h2>
           <p className="text-sm text-gray-500">
             Email: {userData?.email || user?.email}
+          </p>
+          <p className="text-sm text-gray-500">
+            {userData?.phone && <span>Phone: {userData?.phone}</span>}
+          </p>
+          <p className="text-sm text-gray-500">
+            {userData?.address && <span>Address: {userData?.address}</span>}
           </p>
           <p className="text-sm text-gray-500 font-semibold">
             Created At: {new Date(userData?.created_at).toLocaleString()}
@@ -119,8 +126,31 @@ const UserProfile = () => {
 
         {isEditing ? (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div className="flex items-center gap-5 flex-wrap md:flex-nowrap">
+              <input
+                {...register("name")}
+                type="text"
+                className="input w-full focus:outline-0"
+                placeholder="Enter Your Name"
+                defaultValue={userData?.name}
+              />
+              <input
+                {...register("phone")}
+                type="number"
+                className="input w-full focus:outline-0"
+                placeholder="Enter Your phone number"
+                defaultValue={userData?.phone}
+              />
+              <input
+                {...register("address")}
+                type="text"
+                className="input w-full focus:outline-0"
+                placeholder="Enter Your address"
+                defaultValue={userData?.address}
+              />
+            </div>
             <textarea
-              {...register("aboutMe", { required: true })}
+              {...register("aboutMe")}
               className="textarea textarea-bordered w-full"
               rows="4"
               placeholder="Write something about yourself..."

@@ -150,7 +150,7 @@ const DashBoardLayout = () => {
         <div>
           <CodeStackLogo></CodeStackLogo>
         </div>
-        <button className="btn btn-sm btn-ghost" onClick={() => setOpen(!open)}>
+        <button className="btn btn-sm btn-ghost px-0" onClick={() => setOpen(!open)}>
           <FaBars size={20} />
         </button>
       </div>
