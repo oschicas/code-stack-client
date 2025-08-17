@@ -23,6 +23,7 @@ import MakeAnnouncement from "../pages/DashBoard/AdminUser/MakeAnnouncement/Make
 import Resources from "../pages/Resources/Resources";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
+import TermsOfService from "../pages/TermsOfService/TermsOfService";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: '/privacy',
         element: <PrivacyPolicy></PrivacyPolicy>
+      },
+      {
+        path: '/terms',
+        element: <TermsOfService></TermsOfService>
       },
     ],
   },
