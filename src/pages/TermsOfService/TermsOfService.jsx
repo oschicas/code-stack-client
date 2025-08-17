@@ -17,7 +17,7 @@ const TermsOfService = () => {
   });
 
   return (
-    <div className="max-w-10/12 mx-auto px-4 sm:px-6 lg:px-8  pt-24 pb-8 text-gray-300">
+    <div className="max-w-10/12 mx-auto pt-24 pb-8 text-gray-300">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-black mb-4 flex items-center justify-center gap-3">
           <FaGavel className="text-blue-400" /> Terms of Service

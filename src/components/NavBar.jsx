@@ -108,6 +108,55 @@ const NavBar = () => {
         </li>
       )}
 
+      <li>
+        <NavLink
+          to={"/resources"}
+          className={({ isActive }) =>
+            `nav-item ${
+              isActive ? "active font-bold text-[#0B213A]" : "text-white"
+            }`
+          }
+        >
+          Resources
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to={"/privacy"}
+          className={({ isActive }) =>
+            `nav-item ${
+              isActive ? "active font-bold text-[#0B213A]" : "text-white"
+            }`
+          }
+        >
+          Privacy
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to={"/terms"}
+          className={({ isActive }) =>
+            `nav-item ${
+              isActive ? "active font-bold text-[#0B213A]" : "text-white"
+            }`
+          }
+        >
+          Terms
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to={"/contact-us"}
+          className={({ isActive }) =>
+            `nav-item ${
+              isActive ? "active font-bold text-[#0B213A]" : "text-white"
+            }`
+          }
+        >
+          Contact Us
+        </NavLink>
+      </li>
+
       {/* if user is logged in this route will show */}
 
       {user?.email && (
@@ -124,30 +173,6 @@ const NavBar = () => {
           </NavLink>
         </li>
       )}
-      <li>
-        <NavLink
-          to={"/resources"}
-          className={({ isActive }) =>
-            `nav-item ${
-              isActive ? "active font-bold text-[#0B213A]" : "text-white"
-            }`
-          }
-        >
-          Resources
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={"/contact-us"}
-          className={({ isActive }) =>
-            `nav-item ${
-              isActive ? "active font-bold text-[#0B213A]" : "text-white"
-            }`
-          }
-        >
-          Contact Us
-        </NavLink>
-      </li>
     </>
   );
   return (

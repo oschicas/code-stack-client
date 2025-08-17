@@ -9,7 +9,7 @@ import {
 
 const PrivacyPolicy = () => {
   return (
-    <div className="max-w-10/12 mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 text-gray-300">
+    <div className="max-w-10/12 mx-auto pt-24 pb-8 text-gray-300">
       <div className="text-center mb-12">
         <h1 className="text-4xl text-black font-bold mb-4 flex items-center justify-center gap-3">
           <FaShieldAlt className="text-blue-400" /> Privacy Policy
