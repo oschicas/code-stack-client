@@ -74,7 +74,7 @@ const NavBar = () => {
           to={"/"}
           className={({ isActive }) =>
             `nav-item ${
-              isActive ? "active font-bold text-red-500" : "text-white"
+              isActive ? "active font-bold text-[#0B213A]" : "text-white"
             }`
           }
         >
@@ -86,7 +86,7 @@ const NavBar = () => {
           to={"/all-posts"}
           className={({ isActive }) =>
             `nav-item ${
-              isActive ? "active font-bold text-red-500" : "text-white"
+              isActive ? "active font-bold text-[#0B213A]" : "text-white"
             }`
           }
         >
@@ -99,7 +99,7 @@ const NavBar = () => {
             to={"/membership"}
             className={({ isActive }) =>
               `nav-item ${
-                isActive ? "active font-bold text-red-500" : "text-white"
+                isActive ? "active font-bold text-[#0B213A]" : "text-white"
               }`
             }
           >
@@ -116,7 +116,7 @@ const NavBar = () => {
             to={"/dashboard"}
             className={({ isActive }) =>
               `nav-item ${
-                isActive ? "active font-bold text-red-500" : "text-white"
+                isActive ? "active font-bold text-[#0B213A]" : "text-white"
               }`
             }
           >
@@ -129,7 +129,7 @@ const NavBar = () => {
           to={"/resources"}
           className={({ isActive }) =>
             `nav-item ${
-              isActive ? "active font-bold text-red-500" : "text-white"
+              isActive ? "active font-bold text-[#0B213A]" : "text-white"
             }`
           }
         >
@@ -141,7 +141,7 @@ const NavBar = () => {
           to={"/contact-us"}
           className={({ isActive }) =>
             `nav-item ${
-              isActive ? "active font-bold text-red-500" : "text-white"
+              isActive ? "active font-bold text-[#0B213A]" : "text-white"
             }`
           }
         >

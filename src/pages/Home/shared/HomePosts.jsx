@@ -92,7 +92,7 @@ const HomePosts = ({searchedTag}) => {
           {data?.posts.map((post) => (
               <div
               key={post._id}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer"
+              className="bg-white dark:bg-[#0B213A] rounded-lg shadow hover:shadow-lg transition-shadow duration-300 overflow-hidden cursor-pointer"
               onClick={() => navigate(`/post-details/${post._id}`)}
             >
               <div className="p-5">
