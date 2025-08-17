@@ -1,5 +1,7 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import {
@@ -10,27 +12,33 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
-import { FaRegCommentDots } from "react-icons/fa";
-import { FaRegUser } from "react-icons/fa6";
+import { FaEdit, FaRegCommentDots, FaRegUser } from "react-icons/fa";
 import { MdPostAdd } from "react-icons/md";
-import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
 
 const AdminProfile = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
 
+  // Separate form instances for profile and tag forms
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
+    register: registerProfile,
+    handleSubmit: handleProfileSubmit,
+    reset: resetProfile,
   } = useForm();
 
+  const {
+    register: registerTag,
+    handleSubmit: handleTagSubmit,
+    reset: resetTag,
+  } = useForm();
+
+  const [isEditing, setIsEditing] = useState(false);
+
   // fetch admin and site stats
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["admin", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -53,8 +61,28 @@ const AdminProfile = () => {
     { name: "Users", value: data?.usersCount || 0 },
   ];
 
-  //   post tag
-  const { mutateAsync: addTag, isPending: isAdding } = useMutation({
+  // Mutation to update admin info (name, phone, address, aboutMe)
+  const { mutateAsync: updateInfo, isLoading: isUpdating } = useMutation({
+    mutationFn: async (formData) => {
+      const res = await axiosSecure.patch(`/users/${user?.email}`, formData);
+      return res.data;
+    },
+    onSuccess: () => {
+      toast.success("Profile updated successfully!");
+      refetch();
+      resetProfile();
+      queryClient.invalidateQueries({ queryKey: ["admin", user?.email] });
+      setIsEditing(false);
+    },
+    onError: () => toast.error("Failed to update profile"),
+  });
+
+  const onSubmitProfile = async (formData) => {
+    await updateInfo(formData);
+  };
+
+  // Mutation to add a new tag
+  const { mutateAsync: addTag, isLoading: isAddingTag } = useMutation({
     mutationKey: ["add-tag", user?.email],
     mutationFn: async (newTag) => {
       const tag = {
@@ -67,7 +95,7 @@ const AdminProfile = () => {
     },
     onSuccess: () => {
       toast.success("Successfully added a tag");
-      reset();
+      resetTag();
     },
     onError: (err) => {
       if (err?.response?.status === 409) {
@@ -78,17 +106,16 @@ const AdminProfile = () => {
     },
   });
 
-  const onSubmit = (newTag) => {
-    console.log("tag added", newTag);
+  const onSubmitTag = (newTag) => {
     addTag(newTag);
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10 space-y-10">
+    <div className="w-full mx-auto space-y-5">
       {/* Admin Info */}
       <div className="flex flex-col md:flex-row items-center gap-6 bg-base-100 p-6 shadow-lg rounded-2xl">
         <img
-          src={data?.adminInfo?.image}
+          src={data?.adminInfo?.image || user?.photoURL}
           alt="Admin"
           className="w-32 h-32 rounded-full object-cover border-4 border-primary shadow-md"
         />
@@ -107,21 +134,102 @@ const AdminProfile = () => {
         </div>
       </div>
 
-      {/* tag add form */}
+      {/* About Me / Profile Edit Section */}
+      <div className="bg-base-100 shadow-md rounded-lg p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-xl font-semibold">Profile Info</h3>
+          {!isEditing && (
+            <button
+              onClick={() => {
+                setIsEditing(true);
+                resetProfile({
+                  name: data?.adminInfo?.name || "",
+                  phone: data?.adminInfo?.phone || "",
+                  address: data?.adminInfo?.address || "",
+                  aboutMe: data?.adminInfo?.aboutMe || "",
+                });
+              }}
+              className="btn btn-sm btn-outline btn-primary flex items-center gap-2"
+            >
+              <FaEdit /> Edit
+            </button>
+          )}
+        </div>
+
+        {isEditing ? (
+          <form onSubmit={handleProfileSubmit(onSubmitProfile)} className="space-y-4">
+            <div className="flex items-center gap-5 flex-wrap md:flex-nowrap">
+              <input
+                {...registerProfile("name")}
+                type="text"
+                className="input w-full focus:outline-0"
+                placeholder="Enter Name"
+                defaultValue={data?.adminInfo?.name}
+              />
+              <input
+                {...registerProfile("phone")}
+                type="number"
+                className="input w-full focus:outline-0"
+                placeholder="Enter Phone Number"
+                defaultValue={data?.adminInfo?.phone}
+              />
+              <input
+                {...registerProfile("address")}
+                type="text"
+                className="input w-full focus:outline-0"
+                placeholder="Enter Address"
+                defaultValue={data?.adminInfo?.address}
+              />
+            </div>
+            <textarea
+              {...registerProfile("aboutMe")}
+              className="textarea textarea-bordered w-full"
+              rows="4"
+              placeholder="Write something about yourself..."
+              defaultValue={data?.adminInfo?.aboutMe}
+            />
+            <div className="flex gap-2">
+              <button
+                type="submit"
+                className="btn btn-primary btn-sm"
+                disabled={isUpdating}
+              >
+                {isUpdating ? "Saving..." : "Save"}
+              </button>
+              <button
+                type="button"
+                className="btn btn-ghost btn-sm"
+                onClick={() => setIsEditing(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        ) : (
+          <div className="space-y-2 text-gray-700">
+            <p><strong>Name:</strong> {data?.adminInfo?.name}</p>
+            {data?.adminInfo?.phone && <p><strong>Phone:</strong> {data?.adminInfo?.phone}</p>}
+            {data?.adminInfo?.address && <p><strong>Address:</strong> {data?.adminInfo?.address}</p>}
+            <p><strong>About Me:</strong> {data?.adminInfo?.aboutMe || "No information available."}</p>
+          </div>
+        )}
+      </div>
+
+      {/* Tag Add Form */}
       <div className="bg-base-100 p-6 shadow-lg rounded-2xl max-w-lg mx-auto">
         <h3 className="text-xl font-semibold mb-4 text-center">Add New Tag</h3>
-        <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="space-y-3"
+          onSubmit={handleTagSubmit(onSubmitTag)}
+        >
           <input
             type="text"
             placeholder="Enter Tag and don't give space"
             className="input focus:outline-0 w-full"
-            {...register("tag", { required: true })}
+            {...registerTag("tag", { required: true })}
           />
-          {errors.tag?.type === "required" && (
-            <p className="text-red-500 font-bold">Please Add a Tag</p>
-          )}
-          <button type="submit" className="btn btn-primary" disabled={isAdding}>
-            {isAdding ? "Adding Tag" : "Add Tag"}
+          <button type="submit" className="btn btn-primary" disabled={isAddingTag}>
+            {isAddingTag ? "Adding Tag" : "Add Tag"}
           </button>
         </form>
       </div>
