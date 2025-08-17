@@ -116,9 +116,6 @@ const HomePosts = ({searchedTag}) => {
                   {post?.description.slice(0, 100)}...
                 </span>
               </p>
-              <p className="text-sm text-gray-600 mb-2">
-                Tag: <span className="badge badge-ghost">{post?.tag}</span>
-              </p>
 
               <div className="flex gap-4 text-sm text-gray-600 mt-2">
                 <span className="flex items-center gap-1">
