@@ -22,6 +22,7 @@ import ReportedComments from "../pages/DashBoard/AdminUser/ReportedComments/Repo
 import MakeAnnouncement from "../pages/DashBoard/AdminUser/MakeAnnouncement/MakeAnnouncement";
 import Resources from "../pages/Resources/Resources";
 import ContactUs from "../pages/ContactUs/ContactUs";
+import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: '/contact-us',
         element: <ContactUs></ContactUs>
+      },
+      {
+        path: '/privacy',
+        element: <PrivacyPolicy></PrivacyPolicy>
       },
     ],
   },
