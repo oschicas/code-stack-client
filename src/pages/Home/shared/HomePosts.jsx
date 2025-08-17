@@ -9,7 +9,7 @@ const HomePosts = ({searchedTag}) => {
   const axiosInstance = useAxios();
   const [currentPage, setCurrentPage] = useState(1);
   const [sortByPopularity, setSortByPopularity] = useState(false);
-  const postPerPage = 5;
+  const postPerPage = 8;
   const topRef = useRef(null);
   const navigate = useNavigate();
 
