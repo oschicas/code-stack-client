@@ -81,6 +81,18 @@ const NavBar = () => {
           Home
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to={"/all-posts"}
+          className={({ isActive }) =>
+            `nav-item ${
+              isActive ? "active font-bold text-red-500" : "text-white"
+            }`
+          }
+        >
+          All Posts
+        </NavLink>
+      </li>
       {role === "user" && !roleLoading && (
         <li>
           <NavLink
