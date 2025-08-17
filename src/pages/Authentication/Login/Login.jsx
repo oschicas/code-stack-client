@@ -41,7 +41,7 @@ const Login = () => {
         toast.success(
           `successfully logged in user: ${currentUser.displayName}`,
           {
-            position: "top-right",
+            position: "bottom-left",
             autoClose: 1000,
             hideProgressBar: false,
             closeOnClick: false,
@@ -56,7 +56,7 @@ const Login = () => {
       })
       .catch((error) => {
         toast.error(`${error.message}`, {
-          position: "top-right",
+          position: "bottom-left",
           autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: false,

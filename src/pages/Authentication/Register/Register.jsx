@@ -69,7 +69,7 @@ const Register = () => {
         toast.success(
           `successfully registered to user:${currentUser.displayName}`,
           {
-            position: "top-right",
+            position: "bottom-left",
             autoClose: 1000,
             hideProgressBar: false,
             closeOnClick: false,
@@ -87,7 +87,7 @@ const Register = () => {
       .catch((error) => {
         console.error(error);
         toast.error(`${error.message}`, {
-          position: "top-right",
+          position: "bottom-left",
           autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: false,

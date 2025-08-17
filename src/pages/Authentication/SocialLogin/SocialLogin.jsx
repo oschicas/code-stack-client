@@ -49,7 +49,7 @@ const SocialLogin = ({ from }) => {
         toast.success(
           `Successfully Logged in User:${currentUser.displayName}`,
           {
-            position: "top-right",
+            position: "bottom-left",
             autoClose: 1000,
             hideProgressBar: false,
             closeOnClick: false,
@@ -64,7 +64,7 @@ const SocialLogin = ({ from }) => {
       })
       .catch((error) => {
         toast.error(`${error.message}`, {
-          position: "top-right",
+          position: "bottom-left",
           autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: false,
