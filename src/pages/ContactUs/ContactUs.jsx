@@ -142,7 +142,7 @@ const ContactUs = () => {
           </form>
         </div>
         {/* Contact Info */}
-        <div className="space-y-8 bg-base-300">
+        <div className="space-y-8 bg-base-300 rounded-xl">
           <div className="card">
             <div className="card-body">
               <h2 className="card-title text-2xl mb-6">Contact Information</h2>
