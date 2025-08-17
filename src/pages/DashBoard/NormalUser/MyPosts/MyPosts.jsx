@@ -108,8 +108,8 @@ const MyPosts = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto p-4" ref={topRef}>
-      <h2 className="text-3xl font-bold mb-6 text-center">My Posts</h2>
+    <div className="w-full mx-auto p-4" ref={topRef}>
+      <h2 className="text-2xl font-bold mb-6 text-center">My Posts</h2>
 
       <div className="overflow-x-auto bg-base-100 shadow rounded-lg mb-6">
         <table className="table">

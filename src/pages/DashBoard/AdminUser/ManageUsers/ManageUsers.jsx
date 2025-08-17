@@ -77,7 +77,7 @@ const ManageUsers = () => {
     return <p className="text-center py-4 text-gray-500">No users found.</p>;
   }
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-6" ref={topRef}>
+    <div className="w-full mx-auto space-y-5" ref={topRef}>
       <h2 className="text-2xl font-bold mb-4">Manage Users</h2>
 
       {/* Search */}

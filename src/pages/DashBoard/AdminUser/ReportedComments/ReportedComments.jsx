@@ -64,7 +64,7 @@ const ReportedComments = () => {
     );
   }
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10">
+    <div className="w-full mx-auto">
       <h2 className="text-2xl font-bold mb-6">Reported Comments</h2>
       <div className="space-y-6">
         {reports.map((report) => (

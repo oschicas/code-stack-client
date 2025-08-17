@@ -70,7 +70,7 @@ const MakeAnnouncement = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-base-100 shadow-xl rounded-xl p-6 mt-10">
+    <div className="w-full mx-auto bg-base-100 shadow-xl rounded-xl p-4">
       <h2 className="text-2xl font-bold mb-6 text-center">
         Make an Announcement
       </h2>

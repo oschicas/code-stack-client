@@ -145,7 +145,7 @@ const AddPost = () => {
   }
 
   return (
-    <div className="min-w-11/12 md:max-w-3xl mx-auto p-6 bg-base-100 shadow-md rounded-lg mt-10">
+    <div className="w-full mx-auto p-6 bg-base-100 shadow-md rounded-lg">
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Post</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
