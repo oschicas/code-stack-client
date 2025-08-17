@@ -47,7 +47,7 @@ const FAQ = () => {
     <div className="w-10/12 max-w-7xl mx-auto">
       <h2 className="text-2xl font-bold mb-5 flex items-center gap-2"><span className="text-primary"><FaQuestionCircle /></span> Frequently Asked Questions</h2>
 
-      <div className="flex flex-col lg:flex-row gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* FAQ Accordion */}
         <div className="flex-1">
           <div className="space-y-4">
@@ -82,7 +82,7 @@ const FAQ = () => {
         </div>
 
         {/* Image and Static Content */}
-        <div className="lg:w-1/3 flex flex-col">
+        <div className="flex flex-col">
           <div className="bg-blue-50 rounded-lg p-8 h-full flex flex-col">
             <div className="mb-8">
               <img
