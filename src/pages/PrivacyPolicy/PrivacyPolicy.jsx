@@ -9,12 +9,12 @@ import {
 
 const PrivacyPolicy = () => {
   return (
-    <div className="max-w-10/12 mx-auto pt-24 pb-8 text-gray-300">
-      <div className="text-center mb-12">
+    <div className="max-w-10/12 mx-auto pt-24 pb-8 text-gray-300 space-y-5">
+      <div className="text-center">
         <h1 className="text-4xl text-black font-bold mb-4 flex items-center justify-center gap-3">
           <FaShieldAlt className="text-blue-400" /> Privacy Policy
         </h1>
-        <p className="text-lg text-black">
+        <p className="text-lg text-gray-600">
           Last Updated: {new Date().toLocaleDateString()}
         </p>
       </div>

@@ -17,12 +17,12 @@ const TermsOfService = () => {
   });
 
   return (
-    <div className="max-w-10/12 mx-auto pt-24 pb-8 text-gray-300">
-      <div className="text-center mb-12">
+    <div className="max-w-10/12 mx-auto pt-24 pb-8 text-gray-300 space-y-5">
+      <div className="text-center">
         <h1 className="text-4xl font-bold text-black mb-4 flex items-center justify-center gap-3">
           <FaGavel className="text-blue-400" /> Terms of Service
         </h1>
-        <p className="text-lg text-black">Effective Date: {currentDate}</p>
+        <p className="text-lg text-gray-600">Effective Date: {currentDate}</p>
       </div>
 
       <div className="bg-[#0B213A] rounded-xl shadow-xl p-8 sm:p-10 space-y-8">

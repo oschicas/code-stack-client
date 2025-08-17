@@ -56,7 +56,7 @@ const Banner = ({ setSearchedTag }) => {
     >
       <div
         className={`absolute inset-0  ${
-          isFocused ? "bg-black/60" : "bg-black/45"
+          isFocused ? "bg-gray-900/60" : "bg-gray-900/50"
         } flex items-center justify-center text-white px-4`}
       >
         <div className="max-w-2xl w-full text-center space-y-6">
