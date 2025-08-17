@@ -83,7 +83,7 @@ const Reviews = () => {
   }
 
   return (
-    <div className="w-11/12 max-w-7xl mx-auto py-8 space-y-5">
+    <div className="w-11/12 max-w-7xl mx-auto space-y-5">
       <h2 className="text-2xl font-bold flex items-center gap-2">
         <span className="text-primary">
           <MdOutlineRateReview size={25} />

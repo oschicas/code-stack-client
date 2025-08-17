@@ -39,7 +39,7 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="w-10/12 max-w-7xl mx-auto py-8">
+    <div className="w-10/12 max-w-7xl mx-auto">
       <h2 className="text-2xl font-bold mb-5 flex items-center gap-2"><span className="text-primary"><FaQuestionCircle /></span> Frequently Asked Questions</h2>
 
       <div className="flex flex-col lg:flex-row gap-12">
