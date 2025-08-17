@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp, FaQuestionCircle } from "react-icons/fa";
 import faqImage from "../../../assets/faq-image/faq.png";
+import { Link } from "react-router";
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -93,7 +94,7 @@ const FAQ = () => {
                 </h3>
                 <p className="text-gray-600">
                   Can't find what you're looking for? Our support team is
-                  available 24/7 to help you.
+                  available 24/7 to help you.  <Link to={'/contact-us'} className="underline">Contact Us</Link>
                 </p>
               </div>
 
@@ -116,7 +117,7 @@ const FAQ = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900">Email Support</h4>
-                    <p className="text-gray-600">support@yourplatform.com</p>
+                    <a className="text-gray-600" href="mailto:parvez.alif.dev@gmail.com">parvez.alif.dev@gmail.com</a>
                   </div>
                 </div>
 
@@ -138,7 +139,7 @@ const FAQ = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900">Phone Support</h4>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
+                    <a className="text-gray-600" href="tel:+8801872243808">+880 1872243808</a>
                   </div>
                 </div>
               </div>
